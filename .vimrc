@@ -8,17 +8,28 @@ set nocompatible
 
 
 " ---------------------------------------------------------------------
-" vundle
+" vundle: http://vim-users.jp/2011/04/hack215/
+"
+" Github から取得する場合
+" Bundle 'user_name/repository_name'
+"
+" vim-scriptsから取得する場合
+" Bundle 'script_name'
+"
+" 上記以外のgitリポジトリから取得する場合
+" Bundle 'git://repository_url'
 " ---------------------------------------------------------------------
 filetype off
 set rtp+=~/.vim/vundle/
 call vundle#rc()
+filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 
 " スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
-Bundle 'qickrun.vim'
+let mapleader=' '
+" Bundle 'thinca/vim-quickrun'
 Bundle 'Align'
 Bundle 'surround.vim'
-Bundle 'git://github.com/vim-scripts/The-NERD-Commenter.git'
+Bundle 'The-NERD-Commenter'
 Bundle 'neocomplcache'
 
 
@@ -96,23 +107,19 @@ set showmatch                   " カッコの入力で対応するカッコを�
 set splitright                  " vsplit で新規ウィンドウは右側に
 set title                       " ウィンドウタイトルを書き換える
 set cursorline                  " カーソル行を強調表示
-augroup cch
-   autocmd! cch
-   " autocmd WinLeave * set nocursorline
-   " autocmd WinEnter,BufRead * set cursorline
-   autocmd Colorscheme * highlight clear CursorLine
-   autocmd Colorscheme * highlight CursorLine ctermbg=black guibg=black
-augroup END
+autocmd Colorscheme * highlight clear CursorLine
+autocmd Colorscheme * highlight CursorLine ctermbg=black guibg=black
+doautocmd Colorscheme
 
 " http://vim-users.jp/2009/07/hack40/
 set list
 set listchars=tab:>.,trail:_,nbsp:%,extends:>,precedes:<
+
 " 全角スペースの表示
-augroup highlightIdegraphicSpace
-    autocmd! highlightIdegraphicSpace
-    autocmd Colorscheme * highlight ZenkakuSpace term=underline ctermbg=lightblue guibg=darkgray
-    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-augroup END
+autocmd Colorscheme * highlight ZenkakuSpace term=underline ctermbg=lightblue guibg=darkgray
+doautocmd ColorScheme
+autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+
 set t_Co=256
 set ttymouse=xterm2
 
@@ -128,7 +135,7 @@ set wildchar=<Tab>              " コマンド補完を開始するキー
 set wildmode=list:longest,full  " 補完動作（リスト表示で最長一致、その後選択）
 set history=1000                " コマンドの履歴数
 
-imap <c-space> <c-x><c-o>       " <c-space> で omni 補完
+inoremap <C-Space> <C-x><C-o>       " <c-space> で omni 補完
 function! InsertTabWrapper()    " tab で omni 補完
     if pumvisible()
         return "\<c-n>"
@@ -180,17 +187,38 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " ---------------------------------------------------------------------
 " その他
 " ---------------------------------------------------------------------
-"set mouse=a                    " ターミナルマウスを有効
+" set mouse=a                     " ターミナルマウスを有効
 set hidden                      " 編集中に他ファイルを開ける
-filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
-" set paste                       " ペースト時にインデントがずれないようにする
+
+
+" ---------------------------------------------------------------------
+" Web+DB Vol52
+" ---------------------------------------------------------------------
+" .vimrc を編集する
+nnoremap <Space>. :<C-u>edit $MYVIMRC<Enter>
+" .vimrc をリロードする
+nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
+
+" 挿入モード時に日付を挿入する
+inoremap <expr> ,df strftime('%Y-%m-%d %T')
+inoremap <expr> ,dd strftime('%Y-%m-%d')
+inoremap <expr> ,dt strftime('%H:%M:%S')
+
+" 最後に選択した範囲を選択する
+nnoremap gc `[v`]
+vnoremap gc :<C-u>normal gc<Enter>
+onoremap gc :<C-u>normal gc<Enter>
+
+" カレントウィンドウのみカーソル行をハイライトする
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
 
 
 " ---------------------------------------------------------------------
 " plugin
 " ---------------------------------------------------------------------
+
 " NERD_commenter
-let mapleader=' '
 let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
 let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
 
@@ -217,56 +245,6 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-"" Define dictionary.
-"let g:neocomplcache_dictionary_filetype_lists = {
-"   \ 'default' : '',
-"   \ 'vimshell' : $HOME.'/.vimshell_hist',
-"   \ 'scheme' : $HOME.'/.gosh_completions'
-"   \ }
-"
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-"" Plugin key-mappings.
-"imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-"smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-"inoremap <expr><C-g>     neocomplcache#undo_completion()
-"inoremap <expr><C-l>     neocomplcache#complete_common_string()
-"
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplcache#close_popup()
-"inoremap <expr><C-e>  neocomplcache#cancel_popup()
-"
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-
-
 
 
 
