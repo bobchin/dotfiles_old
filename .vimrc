@@ -26,11 +26,14 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 
 " スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
 let mapleader=' '
-" Bundle 'thinca/vim-quickrun'
+Bundle 'thinca/vim-quickrun'
 Bundle 'Align'
 Bundle 'surround.vim'
 Bundle 'The-NERD-Commenter'
 Bundle 'neocomplcache'
+Bundle 'The-NERD-tree'
+Bundle 'unite.vim'
+set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
 
 " ---------------------------------------------------------------------
@@ -106,19 +109,20 @@ set showcmd                     " 入力中のコマンドを右下に表示
 set showmatch                   " カッコの入力で対応するカッコを一瞬強調
 set splitright                  " vsplit で新規ウィンドウは右側に
 set title                       " ウィンドウタイトルを書き換える
-set cursorline                  " カーソル行を強調表示
+
+" カーソル行を強調表示
+set cursorline
 autocmd Colorscheme * highlight clear CursorLine
 autocmd Colorscheme * highlight CursorLine ctermbg=black guibg=black
-doautocmd Colorscheme
-
-" http://vim-users.jp/2009/07/hack40/
-set list
-set listchars=tab:>.,trail:_,nbsp:%,extends:>,precedes:<
 
 " 全角スペースの表示
 autocmd Colorscheme * highlight ZenkakuSpace term=underline ctermbg=lightblue guibg=darkgray
 doautocmd ColorScheme
 autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+
+" http://vim-users.jp/2009/07/hack40/
+set list
+set listchars=tab:>.,trail:_,nbsp:%,extends:>,precedes:<
 
 set t_Co=256
 set ttymouse=xterm2
@@ -135,7 +139,9 @@ set wildchar=<Tab>              " コマンド補完を開始するキー
 set wildmode=list:longest,full  " 補完動作（リスト表示で最長一致、その後選択）
 set history=1000                " コマンドの履歴数
 
-inoremap <C-Space> <C-x><C-o>       " <c-space> で omni 補完
+" <c-space> で omni 補完
+inoremap <C-Space> <C-x><C-o>
+
 function! InsertTabWrapper()    " tab で omni 補完
     if pumvisible()
         return "\<c-n>"
