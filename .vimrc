@@ -161,21 +161,25 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 " ---------------------------------------------------------------------
 " 入力
 " ---------------------------------------------------------------------
-imap {} {}<Left>
-imap [] []<Left>
-imap () ()<Left>
-imap "" ""<Left>
-imap '' ''<Left>
-imap <> <><Left>
+inoremap {} {}<Left>
+inoremap [] []<Left>
+inoremap () ()<Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
+inoremap <> <><Left>
 
 " insert mode での移動
-imap <C-e> <END>
-imap <C-a> <HOME>
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
 
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+" normal mode での移動
+nnoremap <C-e> <END>
+nnoremap <C-a> <HOME>
+
+" inoremap <C-j> <Down>
+" inoremap <C-k> <Up>
+" inoremap <C-h> <Left>
+" inoremap <C-l> <Right>
 
 " 矩形選択時にテキストがないところでも選択可能にする
 set virtualedit+=block
@@ -228,13 +232,13 @@ autocmd WinLeave * setlocal nocursorline
 let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
 let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
 
-nmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
-vmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
+nnoremap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
+vnoremap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
 
-nmap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
-nmap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
-vmap <Leader>/s <Plug>NERDCommenterSexy     " sexyなコメントアウト
-vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
+nnoremap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
+nnoremap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
+vnoremap <Leader>/s <Plug>NERDCommenterSexy     " sexyなコメントアウト
+vnoremap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
 
 " neocomplcache
 " https://github.com/Shougo/neocomplcache/wiki/Presentation-file
