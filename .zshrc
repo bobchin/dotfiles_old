@@ -207,18 +207,12 @@ kterm)
   # set BackSpace control character
   stty erase
   ;;
-cons25)
-  unset LANG
-  export LSCOLORS=ExFxCxdxBxegedabagacad
-  export LS_COLORS='di=01;36:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-  zstyle ':completion:*' list-colors 'di=;36;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
-  ;;
 esac
 
 # set terminal title including current directory
 #
 case "${TERM}" in
-kterm*|xterm*)
+kterm*|xterm*|screen*)
   precmd() {
     echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
   }
@@ -233,6 +227,12 @@ kterm*|xterm*)
   export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
   zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
   ;;
+cons25)
+  unset LANG
+  export LSCOLORS=ExFxCxdxBxegedabagacad
+  export LS_COLORS='di=01;36:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+  zstyle ':completion:*' list-colors 'di=;36;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
+  ;;
 esac
 
 # http://openlab.dino.co.jp/2008/12/29/201425412.html
@@ -244,3 +244,8 @@ esac
 #    ;;
 # esac
 
+# http://d.hatena.ne.jp/rubikitch/20070925#zshcheatsheet
+# cheat sheet(C-M-h)
+cheat-sheet () { zle -M "`cat ~/.zsh/cheat-sheet.conf`" }
+zle -N cheat-sheet
+bindkey "^[^h" cheat-sheet
