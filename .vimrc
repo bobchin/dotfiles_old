@@ -37,6 +37,40 @@ set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
 
 " ---------------------------------------------------------------------
+" plugin
+" ---------------------------------------------------------------------
+
+" NERD_commenter
+let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
+let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
+
+nmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
+vmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
+
+nmap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
+nmap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
+vmap <Leader>/s <Plug>NERDCommenterSexy     " sexyなコメントアウト
+vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
+
+" neocomplcache
+" https://github.com/Shougo/neocomplcache/wiki/Presentation-file
+" Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+
+
+" ---------------------------------------------------------------------
 " 文字コード
 " ---------------------------------------------------------------------
 set enc=utf-8                   " vim 内部文字コード
@@ -224,37 +258,6 @@ autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
 
-" ---------------------------------------------------------------------
-" plugin
-" ---------------------------------------------------------------------
-
-" NERD_commenter
-let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
-let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
-
-nnoremap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
-vnoremap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
-
-nnoremap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
-nnoremap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
-vnoremap <Leader>/s <Plug>NERDCommenterSexy     " sexyなコメントアウト
-vnoremap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
-
-" neocomplcache
-" https://github.com/Shougo/neocomplcache/wiki/Presentation-file
-" Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 
 
