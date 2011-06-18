@@ -69,6 +69,15 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 
+" ---------------------------------------------------------------------
+" autocmd定義
+" 独自にautocmdを定義する場合は以下のようにする
+" autocmd MyAutoCmd WinEnter * setlocal cursorline
+" ---------------------------------------------------------------------
+augroup MyAutoCmd
+  autocmd!
+augroup End
+
 
 " ---------------------------------------------------------------------
 " 文字コード
@@ -79,10 +88,11 @@ set langmenu=japanese
 
 scriptencoding utf-8
 
+
 " ---------------------------------------------------------------------
 " 文字コード判定コマンドの定義（全角文字が化けたら :Fenc を実行）
 " ---------------------------------------------------------------------
-command Fenc call s:Fenc()
+command! Fenc call s:Fenc()
 function! s:Fenc()
     if &modified
         echo "Err: No write since last change"
@@ -152,7 +162,7 @@ autocmd Colorscheme * highlight CursorLine ctermbg=black guibg=black
 " 全角スペースの表示
 autocmd Colorscheme * highlight ZenkakuSpace term=underline ctermbg=lightblue guibg=darkgray
 doautocmd ColorScheme
-autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+autocmd MyAutoCmd VimEnter,WinEnter * match ZenkakuSpace /　/
 
 " http://vim-users.jp/2009/07/hack40/
 set list
@@ -226,6 +236,8 @@ set virtualedit+=block
 noremap <C-i> :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+" ヘルプをqで閉じる
+autocmd MyAutoCmd FileType help nnoremap <buffer>q <C-w>c
 
 
 " ---------------------------------------------------------------------
@@ -233,6 +245,8 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " ---------------------------------------------------------------------
 " set mouse=a                     " ターミナルマウスを有効
 set hidden                      " 編集中に他ファイルを開ける
+" set paste をトグル
+nnoremap <Space>sp :<C-u>set invpaste \| set paste?<CR>
 
 
 " ---------------------------------------------------------------------
@@ -254,12 +268,8 @@ vnoremap gc :<C-u>normal gc<Enter>
 onoremap gc :<C-u>normal gc<Enter>
 
 " カレントウィンドウのみカーソル行をハイライトする
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-
-
-
-
+autocmd MyAutoCmd WinEnter * setlocal cursorline
+autocmd MyAutoCmd WinLeave * setlocal nocursorline
 
 
 
