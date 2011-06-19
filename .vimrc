@@ -24,6 +24,7 @@ set rtp+=~/.vim/vundle/
 call vundle#rc()
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 
+
 " スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
 let mapleader=' '
 Bundle 'thinca/vim-quickrun'
@@ -39,6 +40,12 @@ set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 " ---------------------------------------------------------------------
 " plugin
 " ---------------------------------------------------------------------
+" quickrun
+" <Leader>r で実行
+
+" Align
+" <Leader>tsp : 空白で整形
+" <Leader>t{セパレータ} : セパレータで整形
 
 " NERD_commenter
 let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
@@ -217,8 +224,8 @@ inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
 " normal mode での移動
-nnoremap <C-e> <END>
-nnoremap <C-a> <HOME>
+" nnoremap <C-e> <END>
+" nnoremap <C-a> <HOME>
 
 " inoremap <C-j> <Down>
 " inoremap <C-k> <Up>
