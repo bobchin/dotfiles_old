@@ -34,6 +34,7 @@ Bundle 'The-NERD-Commenter'
 Bundle 'neocomplcache'
 Bundle 'The-NERD-tree'
 Bundle 'unite.vim'
+Bundle 'motemen/hatena-vim'
 set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
 
@@ -74,6 +75,9 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" hatena.vim
+let g:hatena_user='bobchin'
 
 
 " ---------------------------------------------------------------------
