@@ -39,6 +39,8 @@ Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimfiler'
+" [C-y + ,]で展開する
+Bundle 'mattn/zencoding-vim'
 set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
@@ -91,6 +93,11 @@ let g:vimfiler_as_default_explorer = 1
 
 " hatena.vim
 let g:hatena_user='bobchin'
+
+" Zencoding
+let g:user_zen_settings = {
+\   'indentation' : '    ',
+\}
 
 
 " ---------------------------------------------------------------------
