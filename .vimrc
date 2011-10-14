@@ -38,6 +38,7 @@ Bundle 'motemen/hatena-vim'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimfiler'
 set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
@@ -84,6 +85,9 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" vimfiler
+let g:vimfiler_as_default_explorer = 1
 
 " hatena.vim
 let g:hatena_user='bobchin'
