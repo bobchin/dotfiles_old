@@ -303,4 +303,12 @@ autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
 
 
+" ---------------------------------------------------------------------
+" Vim テクニックバイブル
+" ---------------------------------------------------------------------
+" PHP 文法チェック
+augroup phpSyntaxCheck
+    autocmd!
+    autocmd BufWrite *.php w !php -l
+augroup END
 
