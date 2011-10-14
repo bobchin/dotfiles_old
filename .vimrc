@@ -101,16 +101,6 @@ let g:user_zen_settings = {
 
 
 " ---------------------------------------------------------------------
-" autocmd定義
-" 独自にautocmdを定義する場合は以下のようにする
-" autocmd MyAutoCmd WinEnter * setlocal cursorline
-" ---------------------------------------------------------------------
-augroup MyAutoCmd
-  autocmd!
-augroup End
-
-
-" ---------------------------------------------------------------------
 " 文字コード
 " ---------------------------------------------------------------------
 set enc=utf-8                   " vim 内部文字コード
@@ -187,13 +177,19 @@ set title                       " ウィンドウタイトルを書き換える
 
 " カーソル行を強調表示
 set cursorline
-autocmd Colorscheme * highlight clear CursorLine
-autocmd Colorscheme * highlight CursorLine ctermbg=black guibg=black
+augroup highlightCursolLine
+    autocmd!
+    autocmd Colorscheme * highlight clear CursorLine
+    autocmd Colorscheme * highlight CursorLine ctermbg=darkgray guibg=black
+augroup END
 
 " 全角スペースの表示
-autocmd Colorscheme * highlight ZenkakuSpace term=underline ctermbg=lightblue guibg=darkgray
-doautocmd ColorScheme
-autocmd MyAutoCmd VimEnter,WinEnter * match ZenkakuSpace /　/
+scriptencoding utf-8
+augroup highlightIdegraphicSpace
+    autocmd!
+    autocmd ColorScheme * highlight IdegraphicSpace term=underline ctermbg=lightblue guibg=darkblue
+    autocmd VimEnter,WinEnter * match IdegraphicSpace /　/
+augroup END
 
 " http://vim-users.jp/2009/07/hack40/
 set list
@@ -269,7 +265,10 @@ noremap <C-i> :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " ヘルプをqで閉じる
-autocmd MyAutoCmd FileType help nnoremap <buffer>q <C-w>c
+augroup CloseHelpWithQ
+    autocmd!
+    autocmd FileType help nnoremap <buffer>q <C-w>c
+augroup END
 
 
 " ---------------------------------------------------------------------
@@ -300,8 +299,11 @@ vnoremap gc :<C-u>normal gc<Enter>
 onoremap gc :<C-u>normal gc<Enter>
 
 " カレントウィンドウのみカーソル行をハイライトする
-autocmd MyAutoCmd WinEnter * setlocal cursorline
-autocmd MyAutoCmd WinLeave * setlocal nocursorline
+augroup highlightOnlyCurrentWindow
+    autocmd!
+    autocmd WinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+augroup END
 
 
 " ---------------------------------------------------------------------
@@ -312,4 +314,3 @@ augroup phpSyntaxCheck
     autocmd!
     autocmd BufWrite *.php w !php -l
 augroup END
-
