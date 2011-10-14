@@ -28,6 +28,7 @@ call vundle#rc()
 let mapleader=' '
 Bundle 'gmarik/vundle'
 Bundle 'thinca/vim-quickrun'
+Bundle 'thinca/vim-ref'
 Bundle 'Align'
 Bundle 'surround.vim'
 Bundle 'The-NERD-Commenter'
@@ -44,6 +45,11 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 " ---------------------------------------------------------------------
 " quickrun
 " <Leader>r で実行
+
+" vim-ref
+" S-k でマニュアル検索
+let g:ref_phpmanual_path = $HOME . '/.vim/phpmanual/'
+let g:ref_phpmanual_cmd = 'w3m -dump %s'
 
 " Align
 " <Leader>tsp : 空白で整形
