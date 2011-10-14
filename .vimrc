@@ -34,8 +34,10 @@ Bundle 'surround.vim'
 Bundle 'The-NERD-Commenter'
 Bundle 'neocomplcache'
 Bundle 'The-NERD-tree'
-Bundle 'unite.vim'
 Bundle 'motemen/hatena-vim'
+Bundle 'Shougo/vimshell'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/unite.vim'
 set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
