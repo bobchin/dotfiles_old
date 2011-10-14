@@ -20,13 +20,13 @@ set nocompatible
 " Bundle 'git://repository_url'
 " ---------------------------------------------------------------------
 filetype off
-set rtp+=~/.vim/vundle/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 
 
 " スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
 let mapleader=' '
+Bundle 'gmarik/vundle'
 Bundle 'thinca/vim-quickrun'
 Bundle 'Align'
 Bundle 'surround.vim'
@@ -37,6 +37,7 @@ Bundle 'unite.vim'
 Bundle 'motemen/hatena-vim'
 set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
+filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 
 " ---------------------------------------------------------------------
 " plugin
