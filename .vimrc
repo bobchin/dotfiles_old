@@ -41,6 +41,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimfiler'
 " [C-y + ,]で展開する
 Bundle 'mattn/zencoding-vim'
+Bundle 'smartchr'
 set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
@@ -98,6 +99,9 @@ let g:hatena_user='bobchin'
 let g:user_zen_settings = {
 \   'indentation' : '    ',
 \}
+
+" smartchr
+inoremap <expr> = smartchr#loop(' = ', ' == ', ' === ', '=')
 
 
 " ---------------------------------------------------------------------
