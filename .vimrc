@@ -101,7 +101,7 @@ let g:user_zen_settings = {
 \}
 
 " smartchr
-inoremap <expr> = smartchr#loop(' = ', ' == ', ' === ', '=')
+inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
 
 
 " ---------------------------------------------------------------------
