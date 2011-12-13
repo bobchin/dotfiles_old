@@ -11,38 +11,44 @@ set nocompatible
 " vundle: http://vim-users.jp/2011/04/hack215/
 "
 " Github から取得する場合
-" Bundle 'user_name/repository_name'
+" NeoBundle 'user_name/repository_name'
 "
 " vim-scriptsから取得する場合
-" Bundle 'script_name'
+" NeoBundle 'script_name'
 "
 " 上記以外のgitリポジトリから取得する場合
-" Bundle 'git://repository_url'
+" NeoBundle 'git://repository_url'
 " ---------------------------------------------------------------------
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
+if has('vim_starting')
+    set rtp+=~/.vim/bundle/neobundle.vim/
+    call neobundle#rc(expand('~/.vim/bundle'))
+endif
 
 " スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
 let mapleader=' '
-Bundle 'gmarik/vundle'
-Bundle 'thinca/vim-quickrun'
-Bundle 'thinca/vim-ref'
-Bundle 'Align'
-Bundle 'surround.vim'
-Bundle 'The-NERD-Commenter'
-Bundle 'neocomplcache'
-Bundle 'The-NERD-tree'
-Bundle 'motemen/hatena-vim'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler'
+" NeoNeoBundle 'gmarik/vundle'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'Align'
+NeoBundle 'The-NERD-Commenter'
+NeoBundle 'neocomplcache'
+NeoBundle 'The-NERD-tree'
+NeoBundle 'motemen/hatena-vim'
 " [C-y + ,]で展開する
-Bundle 'mattn/zencoding-vim'
-Bundle 'smartchr'
-set notagbsearch " quickrun を使うとヘルプがひけなくなる対応
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'smartchr'
+NeoBundle 'php-doc-upgrade'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'Lokaltog/vim-easymotion'
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 
@@ -76,7 +82,7 @@ vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウ�
 " neocomplcache
 " https://github.com/Shougo/neocomplcache/wiki/Presentation-file
 " Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
+let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -88,6 +94,37 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
 
 " vimfiler
 let g:vimfiler_as_default_explorer = 1
@@ -102,6 +139,17 @@ let g:user_zen_settings = {
 
 " smartchr
 inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
+
+" php-doc
+inoremap <C-r> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-r> :call PhpDocSingle()<CR>
+vnoremap <C-r> :call PhpDocRange()<CR>
+let g:pdv_cfg_Type = "string"
+let g:pdv_cfg_Package = ""
+let g:pdv_cfg_Version = "$id$"
+let g:pdv_cfg_Author = "bobchin <bobchin.ryu@gmail.com>"
+let g:pdv_cfg_Copyright = "Copyright(C) 2011 Hokkai Video Inc.All Rights Reserved."
+let g:pdv_cfg_License = "PHP Version 5.2 {@link http://www.php.net/license/}"
 
 
 " ---------------------------------------------------------------------
@@ -217,20 +265,20 @@ set history=1000                " コマンドの履歴数
 " <c-space> で omni 補完
 inoremap <C-Space> <C-x><C-o>
 
-function! InsertTabWrapper()    " tab で omni 補完
-    if pumvisible()
-        return "\<c-n>"
-    endif
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-        return "\<tab>"
-    elseif exists('&omnifunc') && &omnifunc == ''
-        return "\<c-n>"
-    else
-        return "\<c-x>\<c-o>"
-    endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+" function! InsertTabWrapper()    " tab で omni 補完
+    " if pumvisible()
+        " return "\<c-n>"
+    " endif
+    " let col = col('.') - 1
+    " if !col || getline('.')[col - 1] !~ '\k\|<\|/'
+        " return "\<tab>"
+    " elseif exists('&omnifunc') && &omnifunc == ''
+        " return "\<c-n>"
+    " else
+        " return "\<c-x>\<c-o>"
+    " endif
+" endfunction
+" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 
 
 " ---------------------------------------------------------------------
@@ -259,15 +307,21 @@ inoremap <C-a> <HOME>
 " 矩形選択時にテキストがないところでも選択可能にする
 set virtualedit+=block
 
+" 連続でインデントする
+vnoremap < <gv
+vnoremap > >gv
+
+" insert mode で保存
+inoremap <C-w> <Esc>:<C-u>w<Enter>a
 
 " ---------------------------------------------------------------------
 " Help
 " ---------------------------------------------------------------------
 set helplang=ja
 " Ctrl-i でヘルプ
-noremap <C-i> :<C-u>help<Space>
+" noremap <C-i> :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+" nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " ヘルプをqで閉じる
 augroup CloseHelpWithQ
     autocmd!
