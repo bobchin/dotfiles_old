@@ -3,6 +3,16 @@
 " http://ho-ki-boshi.blogspot.com/2007/07/vimrc.html
 " ---------------------------------------------------------------------
 
+
+" ---------------------------------------------------------------------
+" モーションのまとめ help operator
+" {count}{action}{motion}
+" action:
+"   d: 削除
+"   y: コピー
+"   c: 変更（削除後すぐに挿入）
+" ---------------------------------------------------------------------
+
 " vi との互換性をもたない
 set nocompatible
 
@@ -22,89 +32,97 @@ set nocompatible
 " ---------------------------------------------------------------------
 filetype off
 if has('vim_starting')
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
 endif
 
 let mapleader=' '
 
 " Edit{{{
-    " コメントアウト
-    Bundle 'scrooloose/nerdcommenter'
-    Bundle 'nathanaelkane/vim-indent-guides'
-    " [C-y + ,]で展開する
-    Bundle 'mattn/zencoding-vim'
-    Bundle 'Align'
-    Bundle 'tpope/vim-surround'
-    Bundle 'tpope/vim-repeat'
-    Bundle 'smartchr'
-    " テキストオブジェクト
-    Bundle 'kana/vim-textobj-user'
-    Bundle 'kana/vim-textobj-syntax'
-    Bundle 'thinca/vim-textobj-plugins'
-    Bundle 'kana/vim-textobj-lastpat'
-    Bundle 'kana/vim-textobj-indent'
-    Bundle 'kana/vim-textobj-function'
-    Bundle 'kana/vim-textobj-fold'
-    Bundle 'nelstrom/vim-textobj-rubyblock'
-    Bundle 'kana/vim-textobj-entire'
-    Bundle 'taku-o/vim-toggle'
+  " gcc でコメントアウト vim bible 6-3
+  " Bundle 'scrooloose/nerdcommenter'
+  Bundle 'tomtom/tcomment_vim'
+  " <Leader>ig でインデント vim bible 4-14
+  Bundle 'nathanaelkane/vim-indent-guides'
+  " [C-y + ,]で展開する vim bible 9-7
+  Bundle 'mattn/zencoding-vim'
+  " <Leader>tsp で空白整形 or <Leader>t{separator} でセパレータで整形 vim bible 5-11
+  Bundle 'Align'
+  " vim bible 5-14
+  " ys{motion}{surround}            : surround で囲む
+  " s{surround}                     : 選択範囲をsurroundで囲む
+  " ds{surround}                    : surround を削除する
+  " cs{old-surround}{new-surround}  : surround を変更する
+  Bundle 'tpope/vim-surround'
+  " . で surround.vim の作業を繰り返す vim bible 5-16
+  Bundle 'tpope/vim-repeat'
+  Bundle 'smartchr'
+  " テキストオブジェクト
+  Bundle 'kana/vim-textobj-user'
+  Bundle 'kana/vim-textobj-syntax'
+  Bundle 'thinca/vim-textobj-plugins'
+  Bundle 'kana/vim-textobj-lastpat'
+  Bundle 'kana/vim-textobj-indent'
+  Bundle 'kana/vim-textobj-function'
+  Bundle 'kana/vim-textobj-fold'
+  Bundle 'nelstrom/vim-textobj-rubyblock'
+  Bundle 'kana/vim-textobj-entire'
+  Bundle 'taku-o/vim-toggle'
 " }}}
 
 " Completion{{{
-    Bundle 'Shougo/neocomplcache'
-"    Bundle 'ujihisa/neco-ruby'
-"    Bundle 'ujihisa/neco-look'
+  Bundle 'Shougo/neocomplcache'
+  " Bundle 'ujihisa/neco-ruby'
+  " Bundle 'ujihisa/neco-look'
 " }}}
 
 " Searching/Moving{{{
-"    Bundle 'Smooth-Scroll'
-"    Bundle 'smartword'
-"    Bundle 'camelcasemotion'
-    Bundle 'Lokaltog/vim-easymotion'
-"    Bundle 'matchit'
-"    Bundle 'ruby-matchit'
-"    Bundle 'tyru/open-browser.vim'
+  " Bundle 'Smooth-Scroll'
+  " Bundle 'smartword'
+  " Bundle 'camelcasemotion'
+  Bundle 'Lokaltog/vim-easymotion'
+  " Bundle 'matchit'
+  " Bundle 'ruby-matchit'
+  " Bundle 'tyru/open-browser.vim'
 " }}}
 
 " Programming{{{
-    Bundle 'thinca/vim-quickrun'
-    Bundle 'thinca/vim-ref'
-"    Bundle 'SQLUtilities'
-"    Bundle 'vim-ruby/vim-ruby'
-"    Bundle 'tpope/vim-rails'
-"    Bundle 'taglist.vim'
-"    Bundle 'Source-Explorer-srcexpl.vim'
-"    Bundle 'trinity.vim'
-    Bundle 'php-doc-upgrade'
+  Bundle 'thinca/vim-quickrun'
+  Bundle 'thinca/vim-ref'
+  " Bundle 'SQLUtilities'
+  " Bundle 'vim-ruby/vim-ruby'
+  " Bundle 'tpope/vim-rails'
+  " Bundle 'taglist.vim'
+  " Bundle 'Source-Explorer-srcexpl.vim'
+  " Bundle 'trinity.vim'
+  Bundle 'php-doc-upgrade'
 " }}}
 
 " Syntax{{{
-"    Bundle 'JavaScript-syntax'
-"    Bundle 'jQuery'
-"    Bundle 'tpope/vim-markdown'
-"    Bundle 'scrooloose/syntastic'
+  " Bundle 'JavaScript-syntax'
+  " Bundle 'jQuery'
+  " Bundle 'tpope/vim-markdown'
+  " Bundle 'scrooloose/syntastic'
 " }}}
 
 " Utility{{{
-    Bundle 'Shougo/vimshell'
-    Bundle 'Shougo/vimproc'
-    Bundle 'Shougo/vimfiler'
-    Bundle 'motemen/hatena-vim'
+  Bundle 'Shougo/vimshell'
+  Bundle 'Shougo/vimproc'
+  Bundle 'Shougo/vimfiler'
+  Bundle 'motemen/hatena-vim'
 " }}}
 
 " Unite{{{
-    Bundle 'Shougo/unite.vim'
+  Bundle 'Shougo/unite.vim'
 " }}}
 
 " ColorSchema{{{
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'tsukkee/unite-help'
-    Bundle 'basyura/unite-rails'
+  Bundle 'altercation/vim-colors-solarized'
+  " Bundle 'tsukkee/unite-help'
+  Bundle 'basyura/unite-rails'
 " }}}
 
 Bundle 'gmarik/vundle'
-" Bundle 'Shougo/neobundle.vim'
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 
@@ -112,16 +130,33 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 " plugin
 " ---------------------------------------------------------------------
 " NERD_commenter
-let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
-let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
+" let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
+" let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
+" 
+" nmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
+" vmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
+" 
+" nmap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
+" nmap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
+" vmap <Leader>/s <Plug>NERDommenterSexy      " sexyなコメントアウト
+" vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
+" tcomment
+nmap <Leader>/ gcc
+vmap <Leader>/ gc
 
-nmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
-vmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
+" indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
 
-nmap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
-nmap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
-vmap <Leader>/s <Plug>NERDommenterSexy     " sexyなコメントアウト
-vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
+" Zencoding
+let g:user_zen_settings = {
+\   'indentation' : '    ',
+\}
+
+" Align
+let g:Align_xstrlen = 3       " for japanese string
+let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
 
 " quickrun
 " <Leader>r で実行
@@ -131,10 +166,6 @@ vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウ�
 let g:ref_phpmanual_path = $HOME . '/.vim/phpmanual/'
 let g:ref_phpmanual_cmd = 'w3m -dump %s'
 let g:ref_alc_cmd='lynx -dump -nonumbers %s'
-
-" Align
-" <Leader>tsp : 空白で整形
-" <Leader>t{セパレータ} : セパレータで整形
 
 " neocomplcache
 " https://github.com/Shougo/neocomplcache/wiki/Presentation-file
@@ -188,11 +219,6 @@ let g:vimfiler_as_default_explorer = 1
 
 " hatena.vim
 let g:hatena_user='bobchin'
-
-" Zencoding
-let g:user_zen_settings = {
-\   'indentation' : '    ',
-\}
 
 " smartchr
 inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
