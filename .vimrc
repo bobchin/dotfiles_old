@@ -11,62 +11,106 @@ set nocompatible
 " vundle: http://vim-users.jp/2011/04/hack215/
 "
 " Github から取得する場合
-" NeoBundle 'user_name/repository_name'
+" Bundle 'user_name/repository_name'
 "
 " vim-scriptsから取得する場合
-" NeoBundle 'script_name'
+" スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
+" Bundle 'script_name'
 "
 " 上記以外のgitリポジトリから取得する場合
-" NeoBundle 'git://repository_url'
+" Bundle 'git://repository_url'
 " ---------------------------------------------------------------------
 filetype off
 if has('vim_starting')
-    set rtp+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle'))
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
 endif
 
-" スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
 let mapleader=' '
-" NeoNeoBundle 'gmarik/vundle'
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'Align'
-NeoBundle 'The-NERD-Commenter'
-NeoBundle 'neocomplcache'
-NeoBundle 'The-NERD-tree'
-NeoBundle 'motemen/hatena-vim'
-" [C-y + ,]で展開する
-NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'smartchr'
-NeoBundle 'php-doc-upgrade'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'Lokaltog/vim-easymotion'
+
+" Edit{{{
+    " コメントアウト
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'nathanaelkane/vim-indent-guides'
+    " [C-y + ,]で展開する
+    Bundle 'mattn/zencoding-vim'
+    Bundle 'Align'
+    Bundle 'tpope/vim-surround'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'smartchr'
+    " テキストオブジェクト
+    Bundle 'kana/vim-textobj-user'
+    Bundle 'kana/vim-textobj-syntax'
+    Bundle 'thinca/vim-textobj-plugins'
+    Bundle 'kana/vim-textobj-lastpat'
+    Bundle 'kana/vim-textobj-indent'
+    Bundle 'kana/vim-textobj-function'
+    Bundle 'kana/vim-textobj-fold'
+    Bundle 'nelstrom/vim-textobj-rubyblock'
+    Bundle 'kana/vim-textobj-entire'
+    Bundle 'taku-o/vim-toggle'
+" }}}
+
+" Completion{{{
+    Bundle 'Shougo/neocomplcache'
+"    Bundle 'ujihisa/neco-ruby'
+"    Bundle 'ujihisa/neco-look'
+" }}}
+
+" Searching/Moving{{{
+"    Bundle 'Smooth-Scroll'
+"    Bundle 'smartword'
+"    Bundle 'camelcasemotion'
+    Bundle 'Lokaltog/vim-easymotion'
+"    Bundle 'matchit'
+"    Bundle 'ruby-matchit'
+"    Bundle 'tyru/open-browser.vim'
+" }}}
+
+" Programming{{{
+    Bundle 'thinca/vim-quickrun'
+    Bundle 'thinca/vim-ref'
+"    Bundle 'SQLUtilities'
+"    Bundle 'vim-ruby/vim-ruby'
+"    Bundle 'tpope/vim-rails'
+"    Bundle 'taglist.vim'
+"    Bundle 'Source-Explorer-srcexpl.vim'
+"    Bundle 'trinity.vim'
+    Bundle 'php-doc-upgrade'
+" }}}
+
+" Syntax{{{
+"    Bundle 'JavaScript-syntax'
+"    Bundle 'jQuery'
+"    Bundle 'tpope/vim-markdown'
+"    Bundle 'scrooloose/syntastic'
+" }}}
+
+" Utility{{{
+    Bundle 'Shougo/vimshell'
+    Bundle 'Shougo/vimproc'
+    Bundle 'Shougo/vimfiler'
+    Bundle 'motemen/hatena-vim'
+" }}}
+
+" Unite{{{
+    Bundle 'Shougo/unite.vim'
+" }}}
+
+" ColorSchema{{{
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'tsukkee/unite-help'
+    Bundle 'basyura/unite-rails'
+" }}}
+
+Bundle 'gmarik/vundle'
+" Bundle 'Shougo/neobundle.vim'
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 
 " ---------------------------------------------------------------------
 " plugin
 " ---------------------------------------------------------------------
-" quickrun
-" <Leader>r で実行
-
-" vim-ref
-" S-k でマニュアル検索
-let g:ref_phpmanual_path = $HOME . '/.vim/phpmanual/'
-let g:ref_phpmanual_cmd = 'w3m -dump %s'
-
-" Align
-" <Leader>tsp : 空白で整形
-" <Leader>t{セパレータ} : セパレータで整形
-
 " NERD_commenter
 let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
 let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
@@ -76,8 +120,21 @@ vmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
 
 nmap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
 nmap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
-vmap <Leader>/s <Plug>NERDCommenterSexy     " sexyなコメントアウト
+vmap <Leader>/s <Plug>NERDommenterSexy     " sexyなコメントアウト
 vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
+
+" quickrun
+" <Leader>r で実行
+
+" vim-ref
+" S-k でマニュアル検索
+let g:ref_phpmanual_path = $HOME . '/.vim/phpmanual/'
+let g:ref_phpmanual_cmd = 'w3m -dump %s'
+let g:ref_alc_cmd='lynx -dump -nonumbers %s'
+
+" Align
+" <Leader>tsp : 空白で整形
+" <Leader>t{セパレータ} : セパレータで整形
 
 " neocomplcache
 " https://github.com/Shougo/neocomplcache/wiki/Presentation-file
@@ -181,11 +238,45 @@ endfunction
 " ---------------------------------------------------------------------
 " インデント
 " ---------------------------------------------------------------------
+set autoindent                  " 自動でインデント
 set smartindent                 " インデント調整あり・コメント維持
 set shiftwidth=4                " tab 文字の入力幅
 set tabstop=4                   " tab 文字の表示幅
 set softtabstop=0               " tab キーを押したときに挿入される空白の量
 set expandtab                   " tab を空白文字に置き換え
+if has("autocmd")
+  "ファイルタイプの検索を有効にする
+  filetype plugin on
+  "そのファイルタイプにあわせたインデントを利用する
+  filetype indent on
+
+  autocmd FileType apache     setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType aspvbs     setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType cs         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType diff       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType eruby      setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType haml       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType sh         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType sql        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType vb         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType wsh        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType xml        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType zsh        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
+endif
 
 
 " ---------------------------------------------------------------------
@@ -251,8 +342,8 @@ set t_Co=256
 set ttymouse=xterm2
 
 " カラーテーマ
-colorscheme zenburn
-
+" colorscheme zenburn
+colorscheme solarized
 
 " ---------------------------------------------------------------------
 " 補完
@@ -295,14 +386,17 @@ inoremap <> <><Left>
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
-" normal mode での移動
-" nnoremap <C-e> <END>
-" nnoremap <C-a> <HOME>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-f> <PageDown>
+inoremap <C-b> <PageUp>
 
-" inoremap <C-j> <Down>
-" inoremap <C-k> <Up>
-" inoremap <C-h> <Left>
-" inoremap <C-l> <Right>
+" F2で前のバッファ
+map <F2> <ESC>:bp<CR>
+" F3で次のバッファ
+map <F3> <ESC>:bn<CR>
 
 " 矩形選択時にテキストがないところでも選択可能にする
 set virtualedit+=block
@@ -316,12 +410,13 @@ inoremap <C-w> <Esc>:<C-u>w<Enter>a
 
 " ---------------------------------------------------------------------
 " Help
+" C-] <=> C-O
 " ---------------------------------------------------------------------
 set helplang=ja
 " Ctrl-i でヘルプ
-" noremap <C-i> :<C-u>help<Space>
+noremap <C-i> :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
-" nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " ヘルプをqで閉じる
 augroup CloseHelpWithQ
     autocmd!
@@ -372,3 +467,4 @@ augroup phpSyntaxCheck
     autocmd!
     autocmd BufWrite *.php w !php -l
 augroup END
+
