@@ -13,33 +13,30 @@ cygwin*)
 esac
 
 # PATH
-if ! echo $PATH | grep -q "/opt/local/bin";
-then
-    case "${OSTYPE}" in
-    darwin*)
-        export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
-        ;;
-    *)
-        export PATH=/usr/local/bin:$PATH
-        ;;
-    esac
-fi
+case "${OSTYPE}" in
+darwin*)
+    export PATH=/usr/local/bin:$PATH
+    ;;
+*)
+    export PATH=/usr/local/bin:$PATH
+    ;;
+esac
 
-# screen or tmux
-# 一番最初のシェルの場合のみscreenを起動する。
-# デタッチされていればそれをリアタッチする。
-# $SHLVL: シェルの深さ
-function atmux(){
-    if tmux ls > /dev/null 2>&1; then
-        tmux -2 attach
-    else
-        tmux -2
-    fi
-}
-if [ $SHLVL = 1 ];then
-#    screen -d -R
-    atmux
-fi
+## screen or tmux
+## 一番最初のシェルの場合のみscreenを起動する。
+## デタッチされていればそれをリアタッチする。
+## $SHLVL: シェルの深さ
+#function atmux(){
+#    if tmux ls > /dev/null 2>&1; then
+#        tmux -2 attach
+#    else
+#        tmux -2
+#    fi
+#}
+#if [ $SHLVL = 1 ];then
+##    screen -d -R
+#    atmux
+#fi
 
 ###############プロンプトの設定###############
 
@@ -63,11 +60,20 @@ fi
 autoload -U colors
 colors
 
-PROMPT="%B%{$fg[red]%}%/%#%{$reset_color%}%b "
-PROMPT2="%B%{$fg[red]%}%_%#%{$reset_color%}%b "
-SPROMPT="%B%{$fg[red]%}%r is correct? [n,y,a,e]:%{$reset_color%}%b "
+# color
+DEFAULT=$'%{\e[1;0m%}'
+RESET="%{${reset_color}%}"
+GREEN="%{${fg[green]}%}"
+BLUE="%{${fg[blue]}%}"
+RED="%{${fg[red]}%}"
+CYAN="%{${fg[cyan]}%}"
+WHITE="%{${fg[white]}%}"
+
+PROMPT="%B${RED}%/%#${RESET}%b "
+PROMPT2="%B${RED}%_%#${RESET}%b "
+SPROMPT="%B${RED}%r is correct? [n,y,a,e]:${RESET}%b "
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-    PROMPT="%{$fg[cyan]%}${(U)HOST%%.*} ${PROMPT}"
+    PROMPT="${CYAN}${(U)HOST%%.*} ${PROMPT}"
 
 # Emacs style key binding
 bindkey -e                            # Emacs Style ex)C-a C-e etc...
@@ -151,56 +157,13 @@ setopt autoparamkeys
 setopt autopushd
 setopt pushdignoredups
 
-##############エイリアスの設定###############
-#OSによる切り替えを行う
-
-setopt complete_aliases    # エイリアスを設定したコマンドでも補完機能を使えるようにする
-alias where="command -v"
-alias j="jobs -l"
-
-case "${OSTYPE}" in
-freebsd*|darwin*)
-    alias ls="ls -FG -w"
-    ;;
-linux*)
-    alias ls="ls --color"
-    ;;
-cygwin*)
-    alias ls="ls -hF --color=tty --show-control-chars"
-    ;;
-esac
-alias la="ls -a"
-alias ll="ls -l"
-
-alias du="du -h"
-alias df="df -h"
-
-alias rm="rm -i"
-alias cp="cp -i"
-alias mv="mv -i"
-
-alias w3m="w3m -s"
-alias vi="vim"
-
-# for git
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias go='git checkout '
-alias gk='gitk --all&'
-alias gx='gitx --all'
-
-alias got='git '
-alias get='git '
 
 ## terminal configuration
 #
 unset LSCOLORS
 case "${TERM}" in
 xterm)
-  export TERM=xterm-256color
+  export TERM=xterm-color
   ;;
 kterm)
   export TERM=kterm-color
@@ -235,17 +198,93 @@ cons25)
   ;;
 esac
 
-# http://openlab.dino.co.jp/2008/12/29/201425412.html
-# for tramp
-# case "$TERM" in
-#  dumb | emacs)
-#    PROMPT="%m:%~> "
-#    unsetopt zle
-#    ;;
-# esac
-
 # http://d.hatena.ne.jp/rubikitch/20070925#zshcheatsheet
 # cheat sheet(C-M-h)
 cheat-sheet () { zle -M "`cat ~/.zsh/cheat-sheet.conf`" }
 zle -N cheat-sheet
 bindkey "^[^h" cheat-sheet
+
+# git completion
+autoload bashcompinit
+bashcompinit
+source ~/git-completion.bash
+
+# rbenv
+eval "$(rbenv init -)"
+
+# rake 
+_rake () {
+  if [ -f Rakefile ]; then
+    compadd `rake -T | awk "{print \\$2}" | xargs`
+  fi
+}
+compdef _rake rake
+
+# node
+NODE_PATH=/usr/local/lib/node_modules
+
+
+##############エイリアスの設定###############
+#OSによる切り替えを行う
+
+setopt complete_aliases    # エイリアスを設定したコマンドでも補完機能を使えるようにする
+alias where="command -v"
+alias j="jobs -l"
+
+case "${OSTYPE}" in
+freebsd*|darwin*)
+    alias ls="ls -FG -w"
+    ;;
+linux*)
+    alias ls="ls --color"
+    ;;
+cygwin*)
+    alias ls="ls -hF --color=tty --show-control-chars"
+    ;;
+esac
+alias la="ls -a"
+alias ll="ls -l"
+
+alias du="du -h"
+alias df="df -h"
+
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+
+alias w3m="w3m -s"
+alias vi="vim"
+
+alias man="jman"
+
+# for git
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+
+alias got='git '
+alias get='git '
+
+# OS固有設定
+case "${OSTYPE}" in
+darwin*)
+    [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
+    ;;
+linux*)
+    [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
+    ;;
+esac
+
+# PC固有設定
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+
+
+
+
+
