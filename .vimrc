@@ -3,23 +3,11 @@
 " http://ho-ki-boshi.blogspot.com/2007/07/vimrc.html
 " ---------------------------------------------------------------------
 
-
-" ---------------------------------------------------------------------
-" モーションのまとめ help operator
-" {count}{action}{motion}
-" action:
-"   d: 削除
-"   y: コピー
-"   c: 変更（削除後すぐに挿入）
-" ---------------------------------------------------------------------
-
 " vi との互換性をもたない
 set nocompatible
 
-
-" ---------------------------------------------------------------------
-" vundle: http://vim-users.jp/2011/04/hack215/
-"
+" vundle {{{ ----------------------------------------------------------
+" http://vim-users.jp/2011/04/hack215/
 " Github から取得する場合
 " Bundle 'user_name/repository_name'
 "
@@ -56,17 +44,24 @@ let mapleader=' '
   Bundle 'tpope/vim-surround'
   " . で surround.vim の作業を繰り返す vim bible 5-16
   Bundle 'tpope/vim-repeat'
+  " = で設定された入力をループする vim bible 9-4
   Bundle 'smartchr'
-  " テキストオブジェクト
+  " テキストオブジェクト vim bible 5-13, 5-15
   Bundle 'kana/vim-textobj-user'
-  Bundle 'kana/vim-textobj-syntax'
-  Bundle 'thinca/vim-textobj-plugins'
-  Bundle 'kana/vim-textobj-lastpat'
-  Bundle 'kana/vim-textobj-indent'
-  Bundle 'kana/vim-textobj-function'
+  " [z]
   Bundle 'kana/vim-textobj-fold'
+  " [i]
+  Bundle 'kana/vim-textobj-indent'
+  " [/][?]
+  Bundle 'kana/vim-textobj-lastpat'
+  " [y]
+  Bundle 'kana/vim-textobj-syntax'
+  " []
+  Bundle 'thinca/vim-textobj-plugins'
+  Bundle 'kana/vim-textobj-function'
   Bundle 'nelstrom/vim-textobj-rubyblock'
   Bundle 'kana/vim-textobj-entire'
+
   Bundle 'taku-o/vim-toggle'
 " }}}
 
@@ -125,11 +120,12 @@ let mapleader=' '
 Bundle 'gmarik/vundle'
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
+" }}}
 
-" ---------------------------------------------------------------------
-" plugin
-" ---------------------------------------------------------------------
-" NERD_commenter
+
+" plugin {{{ ----------------------------------------------------------
+
+" NERD_commenter {{{
 " let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
 " let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
 " 
@@ -143,11 +139,13 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 " tcomment
 nmap <Leader>/ gcc
 vmap <Leader>/ gc
+" }}}
 
-" indent-guides
+" indent-guides {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
+" }}}
 
 " Zencoding
 let g:user_zen_settings = {
@@ -157,6 +155,9 @@ let g:user_zen_settings = {
 " Align
 let g:Align_xstrlen = 3       " for japanese string
 let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
+
+" smartchr
+inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
 
 " quickrun
 " <Leader>r で実行
@@ -220,9 +221,6 @@ let g:vimfiler_as_default_explorer = 1
 " hatena.vim
 let g:hatena_user='bobchin'
 
-" smartchr
-inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
-
 " php-doc
 inoremap <C-r> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-r> :call PhpDocSingle()<CR>
@@ -233,7 +231,7 @@ let g:pdv_cfg_Version = "$id$"
 let g:pdv_cfg_Author = "bobchin <bobchin.ryu@gmail.com>"
 let g:pdv_cfg_Copyright = "Copyright(C) 2011 Hokkai Video Inc.All Rights Reserved."
 let g:pdv_cfg_License = "PHP Version 5.2 {@link http://www.php.net/license/}"
-
+" }}}
 
 " ---------------------------------------------------------------------
 " 文字コード
@@ -343,6 +341,7 @@ set showcmd                     " 入力中のコマンドを右下に表示
 set showmatch                   " カッコの入力で対応するカッコを一瞬強調
 set splitright                  " vsplit で新規ウィンドウは右側に
 set title                       " ウィンドウタイトルを書き換える
+set foldmethod=marker
 
 " カーソル行を強調表示
 set cursorline
