@@ -341,7 +341,7 @@ set showcmd                     " 入力中のコマンドを右下に表示
 set showmatch                   " カッコの入力で対応するカッコを一瞬強調
 set splitright                  " vsplit で新規ウィンドウは右側に
 set title                       " ウィンドウタイトルを書き換える
-set foldmethod=marker
+" set/oldmethod=marker
 
 " カーソル行を強調表示
 set cursorline
