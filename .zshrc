@@ -16,6 +16,7 @@ esac
 case "${OSTYPE}" in
 darwin*)
     export PATH=/usr/local/bin:$PATH
+    export NODE_PATH=/usr/local/lib/node_modules
     ;;
 *)
     export PATH=/usr/local/bin:$PATH
