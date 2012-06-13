@@ -1,13 +1,18 @@
 " ---------------------------------------------------------------------
 " 参考
 " http://ho-ki-boshi.blogspot.com/2007/07/vimrc.html
+" http://yuroyoro.hatenablog.com/entries/2012/02/11
+" https://github.com/yuroyoro/dotfiles
 " ---------------------------------------------------------------------
 
 " vi との互換性をもたない
 set nocompatible
 
-" vundle {{{ ----------------------------------------------------------
+" vundle {{{
+" vundle 起動設定 {{{
+" ---------------------------------------------------------------------
 " http://vim-users.jp/2011/04/hack215/
+"
 " Github から取得する場合
 " Bundle 'user_name/repository_name'
 "
@@ -23,50 +28,72 @@ if has('vim_starting')
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 endif
+" }}}
 
 let mapleader=' '
 
 " Edit{{{
-  " gcc でコメントアウト vim bible 6-3
-  " Bundle 'scrooloose/nerdcommenter'
+  " gcc/<C-_><C-_> でコメントアウト vim bible 6-3
   Bundle 'tomtom/tcomment_vim'
-  " <Leader>ig でインデント vim bible 4-14
+
+  " <Leader>ig でインデントガイドのトグル vim bible 4-14
   Bundle 'nathanaelkane/vim-indent-guides'
-  " [C-y + ,]で展開する vim bible 9-7
+
+  " <C-y>, で展開する vim bible 9-7
   Bundle 'mattn/zencoding-vim'
+
   " <Leader>tsp で空白整形 or <Leader>t{separator} でセパレータで整形 vim bible 5-11
   Bundle 'Align'
-  " vim bible 5-14
+
+  " マルチバイト対応の整形
+  Bundle 'h1mesuke/vim-alignta'
+
+  " ヤンクの履歴を保存し後から使用できるようにする vim bible 4-4
+  Bundle "YankRing.vim"
+
+  " テキストオブジェクトを囲んだりする vim bible 5-14
   " ys{motion}{surround}            : surround で囲む
   " s{surround}                     : 選択範囲をsurroundで囲む
   " ds{surround}                    : surround を削除する
   " cs{old-surround}{new-surround}  : surround を変更する
   Bundle 'tpope/vim-surround'
+
+  " テキストオブジェクト vim bible 5-15
+  " テキストオブジェクトを簡単に作成するためのコアモジュール
+  Bundle 'kana/vim-textobj-user'
+  " [z] フォールディングをテキストオブジェクトにする
+  Bundle 'kana/vim-textobj-fold'
+  " [i] インデントをテキストオブジェクトにする
+  Bundle 'kana/vim-textobj-indent'
+  " [/][?] 最後の検索にマッチした箇所をテキストオブジェクトにする
+  Bundle 'kana/vim-textobj-lastpat'
+  " [y] syntax highlight されたものをテキストオブジェクトにする
+  Bundle 'kana/vim-textobj-syntax'
+  " いろんなものをテキストオブジェクトにする
+  Bundle 'thinca/vim-textobj-plugins'
+  " 関数の中身をテキストオブジェクトにする
+  Bundle 'kana/vim-textobj-function'
+
   " . で surround.vim の作業を繰り返す vim bible 5-16
   Bundle 'tpope/vim-repeat'
+
   " = で設定された入力をループする vim bible 9-4
   Bundle 'smartchr'
-  " テキストオブジェクト vim bible 5-13, 5-15
-  Bundle 'kana/vim-textobj-user'
-  " [z]
-  Bundle 'kana/vim-textobj-fold'
-  " [i]
-  Bundle 'kana/vim-textobj-indent'
-  " [/][?]
-  Bundle 'kana/vim-textobj-lastpat'
-  " [y]
-  Bundle 'kana/vim-textobj-syntax'
-  " []
-  Bundle 'thinca/vim-textobj-plugins'
-  Bundle 'kana/vim-textobj-function'
-  Bundle 'nelstrom/vim-textobj-rubyblock'
-  Bundle 'kana/vim-textobj-entire'
 
+  " true <=> false などをトグル。Insertモードでは<C-t>, それ以外では +
   Bundle 'taku-o/vim-toggle'
+
+  " Markdownでメモ
+  Bundle 'tpope/vim-markdown'
+  Bundle 'tyru/open-browser.vim'
+  " Bundle 'vim-scripts/VimRepress'
+
 " }}}
 
 " Completion{{{
+  " 自動補完 vim bible 9-10
   Bundle 'Shougo/neocomplcache'
+  Bundle 'Shougo/neocomplcache-snippets-complete'
   " Bundle 'ujihisa/neco-ruby'
   " Bundle 'ujihisa/neco-look'
 " }}}
@@ -90,7 +117,7 @@ let mapleader=' '
   " Bundle 'taglist.vim'
   " Bundle 'Source-Explorer-srcexpl.vim'
   " Bundle 'trinity.vim'
-  Bundle 'php-doc-upgrade'
+  " Bundle 'php-doc-upgrade'
 " }}}
 
 " Syntax{{{
@@ -125,70 +152,80 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 
 " plugin {{{ ----------------------------------------------------------
 
-" NERD_commenter {{{
-" let g:NERDCreateDefaultMappings = 0         " デフォルトキーマッピングを無効に
-" let g:NERDSpaceDelims = 1                   " コメントアウト時のスペース数は１
-" 
-" nmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
-" vmap <Leader>/ <Plug>NERDCommenterToggle    " コメントアウトをトグル
-" 
-" nmap <Leader>/a <Plug>NERDCommenterAppend   " コメントアウト後すぐに入力
-" nmap <leader>/9 <Plug>NERDCommenterToEOL    " 行末までコメンアウト
-" vmap <Leader>/s <Plug>NERDommenterSexy      " sexyなコメントアウト
-" vmap <Leader>/b <Plug>NERDCommenterMinimal  " ブロックをコメントアウト
-" tcomment
-nmap <Leader>/ gcc
-vmap <Leader>/ gc
+" tcomment {{{
+" <C-_>b ブロックコメント
+" <C-_>i 囲むようにコメント
+" Space + / コメントをトグル
+nmap <Leader>/ <C-_><C-_>
+vmap <Leader>/ <C-_><C-_>
 " }}}
 
 " indent-guides {{{
-let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guideson_vim_startup = 1
 let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
 " }}}
 
 " Zencoding
+" <C-y>,
 let g:user_zen_settings = {
 \   'indentation' : '    ',
+\   'javascript' : {
+\       'snippets' : {
+\           'jq' : "$function(){\n\t${cursor}${child}\n};",
+\           'jq:each' : "$.each(${cursor}, function(index, item){\n\t${child}\n});",
+\           'fn' : "(function(){\n\t${cursor}\n})();",
+\           'tm' : "setTimeout(function(){\n\t${cursor}\n}, 100);",
+\       },
+\   },
 \}
 
 " Align
 let g:Align_xstrlen = 3       " for japanese string
 let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
 
+" YankRing
+let g:yankring_history_dir = expand('$HOME')
+let g:yankring_history_file = '.yankring_history'
+let g:yankring_max_history = 10
+let g:yankring_window_height = 13
+
 " smartchr
-inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
+" inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
 
-" quickrun
-" <Leader>r で実行
+" test
 
-" vim-ref
-" S-k でマニュアル検索
-let g:ref_phpmanual_path = $HOME . '/.vim/phpmanual/'
-let g:ref_phpmanual_cmd = 'w3m -dump %s'
-let g:ref_alc_cmd='lynx -dump -nonumbers %s'
 
 " neocomplcache
-" https://github.com/Shougo/neocomplcache/wiki/Presentation-file
-" Disable AutoComplPop.
+" 競合するのでAutoComplPopを無効化する
 let g:acp_enableAtStartup = 0
-" Use neocomplcache.
+" 起動時にneocomplecacheを有効にする
 let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
+" 補完が自動的に開始される文字数
+let g:neocomplcache_auto_completion_start_length = 3
+" 大文字が入力されるまで大文字小文字の区別を無視する
 let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
+" Camel Case を有効にする。大文字を区切りとして補完する
 let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
+" アンダーバー区切りとして補完する
 let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
+" シンタックスをキャッシュするときの最小文字数
 let g:neocomplcache_min_syntax_length = 3
+" neocomplcache を自動的にロックするバッファ名のパターン
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" 一番先頭の候補を選択状態にする
+let g:neocomplcache_enable_auto_select = 1
+" 表示する候補の数
+let g:neocomplcache_max_list = 20
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ 'javascript' : $HOME.'/.vim/dict/jacascript.dict',
+    \ 'php' : $HOME.'/.vim/dict/php.dict',
+    \ 'ctp' : $HOME.'/.vim/dict/php.dict',
+    \ 'vm' : $HOME.'/.vim/dict/vim.dict',
     \ }
 
 " Define keyword.
@@ -198,22 +235,71 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
+" スニペットを展開する
 imap <C-k>     <Plug>(neocomplcache_snippets_expand)
 smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+" UNDO
 inoremap <expr><C-g>     neocomplcache#undo_completion()
+" 補完候補の共通部分までを補完する
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
+" SuperTab like snippets behavior.
+" imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable( ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible( ? "\<C-n>" : "\<TAB>"))
+
 " Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
+" 補完を確定して閉じる
+inoremap <expr><C-y>  neocomplcache#close_popup()
+" 補完をキャンセルして閉じる
+inoremap <expr><C-c>  neocomplcache#cancel_popup()
+" <CR> 候補が出ていれば確定にする
+inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+" <TAB> で補完
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+" FileType毎のOmni補完を設定
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType c          setlocal omnifunc=ccomplete#Complete
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+
+"ファイルタイプの関連付け
+if !exists('g:neocomplcache_same_filetype_lists')
+  let g:neocomplcache_same_filetype_lists = {}
+endif
+let g:neocomplcache_same_filetype_lists['ctp'] = 'php'
+
+" quickrun
+" <Leader>r で実行
+" 横分割するようにする
+let g:quickrun_config = {'*':{'split':'below'}}
+" let g:quickrun_config['markdown'] = {
+"   \ 'outputter': 'browser',
+"   \ }
+
+" VimRepress
+" let VIMPRESS = [{
+"   \'username': 'bobchin',
+"   \'password': 'naeppe',
+"   \'blog_url': 'http://bobchin.ddo.jp/wp/',
+"   \}]
+
+" vim-ref
+" S-k でマニュアル検索
+let g:ref_phpmanual_path = $HOME . '/.vim/phpmanual/'
+let g:ref_phpmanual_cmd = 'w3m -dump %s'
+let g:ref_alc_cmd='lynx -dump -nonumbers %s'
 
 " vimfiler
 let g:vimfiler_as_default_explorer = 1
@@ -339,17 +425,18 @@ syntax on                       " シンタックスの色付けを有効
 set ruler                       " 左下に行列位置を表示
 set showcmd                     " 入力中のコマンドを右下に表示
 set showmatch                   " カッコの入力で対応するカッコを一瞬強調
+set splitbelow                  " split で新規ウィンドウは下側に
 set splitright                  " vsplit で新規ウィンドウは右側に
 set title                       " ウィンドウタイトルを書き換える
 " set/oldmethod=marker
 
 " カーソル行を強調表示
 set cursorline
-augroup highlightCursolLine
-    autocmd!
-    autocmd Colorscheme * highlight clear CursorLine
-    autocmd Colorscheme * highlight CursorLine ctermbg=darkgray guibg=black
-augroup END
+" augroup highlightCursolLine
+"     autocmd!
+"     autocmd Colorscheme * highlight clear CursorLine
+"     autocmd Colorscheme * highlight CursorLine ctermbg=darkgray guibg=black
+" augroup END
 
 " 全角スペースの表示
 scriptencoding utf-8
@@ -367,7 +454,10 @@ set t_Co=256
 set ttymouse=xterm2
 
 " カラーテーマ
-" colorscheme zenburn
+" 輝度を高くする
+" let g:solarized_visibility = "high"
+" コントラストを高くする
+" let g:solarized_contrast = "high"
 colorscheme solarized
 
 " ---------------------------------------------------------------------
@@ -411,10 +501,11 @@ inoremap <> <><Left>
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+" neocomplecache と被るため
+" inoremap <C-j> <Down>
+" inoremap <C-k> <Up>
+" inoremap <C-h> <Left>
+" inoremap <C-l> <Right>
 inoremap <C-f> <PageDown>
 inoremap <C-b> <PageUp>
 
