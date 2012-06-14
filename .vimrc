@@ -32,117 +32,103 @@ endif
 
 let mapleader=' '
 
-" Edit{{{
-  " gcc/<C-_><C-_> でコメントアウト vim bible 6-3
-  Bundle 'tomtom/tcomment_vim'
+" gcc/<C-_><C-_> でコメントアウト vim bible 6-3
+Bundle 'tomtom/tcomment_vim'
 
-  " <Leader>ig でインデントガイドのトグル vim bible 4-14
-  Bundle 'nathanaelkane/vim-indent-guides'
+" <Leader>ig でインデントガイドのトグル vim bible 4-14
+Bundle 'nathanaelkane/vim-indent-guides'
 
-  " <C-y>, で展開する vim bible 9-7
-  Bundle 'mattn/zencoding-vim'
+" <C-y>, で展開する vim bible 9-7
+Bundle 'mattn/zencoding-vim'
 
-  " <Leader>tsp で空白整形 or <Leader>t{separator} でセパレータで整形 vim bible 5-11
-  Bundle 'Align'
+" <Leader>tsp で空白整形 or <Leader>t{separator} でセパレータで整形 vim bible 5-11
+Bundle 'Align'
 
-  " マルチバイト対応の整形
-  Bundle 'h1mesuke/vim-alignta'
+" マルチバイト対応の整形
+Bundle 'h1mesuke/vim-alignta'
 
-  " ヤンクの履歴を保存し後から使用できるようにする vim bible 4-4
-  Bundle "YankRing.vim"
+" ヤンクの履歴を保存し後から使用できるようにする vim bible 4-4
+Bundle "YankRing.vim"
 
-  " テキストオブジェクトを囲んだりする vim bible 5-14
-  " ys{motion}{surround}            : surround で囲む
-  " s{surround}                     : 選択範囲をsurroundで囲む
-  " ds{surround}                    : surround を削除する
-  " cs{old-surround}{new-surround}  : surround を変更する
-  Bundle 'tpope/vim-surround'
+" テキストオブジェクトを囲んだりする vim bible 5-14
+" ys{motion}{surround}            : surround で囲む
+" s{surround}                     : 選択範囲をsurroundで囲む
+" ds{surround}                    : surround を削除する
+" cs{old-surround}{new-surround}  : surround を変更する
+Bundle 'tpope/vim-surround'
 
-  " テキストオブジェクト vim bible 5-15
-  " テキストオブジェクトを簡単に作成するためのコアモジュール
-  Bundle 'kana/vim-textobj-user'
-  " [z] フォールディングをテキストオブジェクトにする
-  Bundle 'kana/vim-textobj-fold'
-  " [i] インデントをテキストオブジェクトにする
-  Bundle 'kana/vim-textobj-indent'
-  " [/][?] 最後の検索にマッチした箇所をテキストオブジェクトにする
-  Bundle 'kana/vim-textobj-lastpat'
-  " [y] syntax highlight されたものをテキストオブジェクトにする
-  Bundle 'kana/vim-textobj-syntax'
-  " いろんなものをテキストオブジェクトにする
-  Bundle 'thinca/vim-textobj-plugins'
-  " 関数の中身をテキストオブジェクトにする
-  Bundle 'kana/vim-textobj-function'
+" テキストオブジェクト vim bible 5-15
+" テキストオブジェクトを簡単に作成するためのコアモジュール
+Bundle 'kana/vim-textobj-user'
+" [z] フォールディングをテキストオブジェクトにする
+Bundle 'kana/vim-textobj-fold'
+" [i] インデントをテキストオブジェクトにする
+Bundle 'kana/vim-textobj-indent'
+" [/][?] 最後の検索にマッチした箇所をテキストオブジェクトにする
+Bundle 'kana/vim-textobj-lastpat'
+" [y] syntax highlight されたものをテキストオブジェクトにする
+Bundle 'kana/vim-textobj-syntax'
+" いろんなものをテキストオブジェクトにする
+Bundle 'thinca/vim-textobj-plugins'
+" 関数の中身をテキストオブジェクトにする
+Bundle 'kana/vim-textobj-function'
 
-  " . で surround.vim の作業を繰り返す vim bible 5-16
-  Bundle 'tpope/vim-repeat'
+" . で surround.vim の作業を繰り返す vim bible 5-16
+Bundle 'tpope/vim-repeat'
 
-  " = で設定された入力をループする vim bible 9-4
-  Bundle 'smartchr'
+" = で設定された入力をループする vim bible 9-4
+" Bundle 'smartchr'
 
-  " true <=> false などをトグル。Insertモードでは<C-t>, それ以外では +
-  Bundle 'taku-o/vim-toggle'
+" true <=> false などをトグル。Insertモードでは<C-t>, それ以外では +
+Bundle 'taku-o/vim-toggle'
 
-  " Markdownでメモ
-  Bundle 'tpope/vim-markdown'
-  Bundle 'tyru/open-browser.vim'
-  " Bundle 'vim-scripts/VimRepress'
+" 自動補完 vim bible 9-10
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache-snippets-complete'
+" Bundle 'ujihisa/neco-ruby'
+" Bundle 'ujihisa/neco-look'
 
-" }}}
+" ステータスラインをきれいに表示
+Bundle 'Lokaltog/vim-powerline'
 
-" Completion{{{
-  " 自動補完 vim bible 9-10
-  Bundle 'Shougo/neocomplcache'
-  Bundle 'Shougo/neocomplcache-snippets-complete'
-  " Bundle 'ujihisa/neco-ruby'
-  " Bundle 'ujihisa/neco-look'
-" }}}
+" Markdownでメモ
+Bundle 'tpope/vim-markdown'
+Bundle 'tyru/open-browser.vim'
+" Bundle 'vim-scripts/VimRepress'
 
-" Searching/Moving{{{
-  " Bundle 'Smooth-Scroll'
-  " Bundle 'smartword'
-  " Bundle 'camelcasemotion'
-  Bundle 'Lokaltog/vim-easymotion'
-  " Bundle 'matchit'
-  " Bundle 'ruby-matchit'
-  " Bundle 'tyru/open-browser.vim'
-" }}}
+" Bundle 'Smooth-Scroll'
+" Bundle 'smartword'
+" Bundle 'camelcasemotion'
+Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'matchit'
+" Bundle 'ruby-matchit'
+" Bundle 'tyru/open-browser.vim'
 
-" Programming{{{
-  Bundle 'thinca/vim-quickrun'
-  Bundle 'thinca/vim-ref'
-  " Bundle 'SQLUtilities'
-  " Bundle 'vim-ruby/vim-ruby'
-  " Bundle 'tpope/vim-rails'
-  " Bundle 'taglist.vim'
-  " Bundle 'Source-Explorer-srcexpl.vim'
-  " Bundle 'trinity.vim'
-  " Bundle 'php-doc-upgrade'
-" }}}
+Bundle 'thinca/vim-quickrun'
+Bundle 'thinca/vim-ref'
+" Bundle 'SQLUtilities'
+" Bundle 'vim-ruby/vim-ruby'
+" Bundle 'tpope/vim-rails'
+" Bundle 'taglist.vim'
+" Bundle 'Source-Explorer-srcexpl.vim'
+" Bundle 'trinity.vim'
+" Bundle 'php-doc-upgrade'
 
-" Syntax{{{
-  " Bundle 'JavaScript-syntax'
-  " Bundle 'jQuery'
-  " Bundle 'tpope/vim-markdown'
-  " Bundle 'scrooloose/syntastic'
-" }}}
+" Bundle 'JavaScript-syntax'
+" Bundle 'jQuery'
+" Bundle 'tpope/vim-markdown'
+" Bundle 'scrooloose/syntastic'
 
-" Utility{{{
-  Bundle 'Shougo/vimshell'
-  Bundle 'Shougo/vimproc'
-  Bundle 'Shougo/vimfiler'
-  Bundle 'motemen/hatena-vim'
-" }}}
+Bundle 'Shougo/vimshell'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimfiler'
+Bundle 'motemen/hatena-vim'
 
-" Unite{{{
-  Bundle 'Shougo/unite.vim'
-" }}}
+Bundle 'Shougo/unite.vim'
 
-" ColorSchema{{{
-  Bundle 'altercation/vim-colors-solarized'
-  " Bundle 'tsukkee/unite-help'
-  Bundle 'basyura/unite-rails'
-" }}}
+Bundle 'altercation/vim-colors-solarized'
+" Bundle 'tsukkee/unite-help'
+Bundle 'basyura/unite-rails'
 
 Bundle 'gmarik/vundle'
 
@@ -160,11 +146,13 @@ nmap <Leader>/ <C-_><C-_>
 vmap <Leader>/ <C-_><C-_>
 " }}}
 
+
 " indent-guides {{{
 " let g:indent_guideson_vim_startup = 1
 let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
 " }}}
+
 
 " Zencoding
 " <C-y>,
@@ -180,9 +168,11 @@ let g:user_zen_settings = {
 \   },
 \}
 
+
 " Align
 let g:Align_xstrlen = 3       " for japanese string
 let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
+
 
 " YankRing
 let g:yankring_history_dir = expand('$HOME')
@@ -190,10 +180,9 @@ let g:yankring_history_file = '.yankring_history'
 let g:yankring_max_history = 10
 let g:yankring_window_height = 13
 
+
 " smartchr
 " inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
-
-" test
 
 
 " neocomplcache
@@ -217,6 +206,11 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_enable_auto_select = 1
 " 表示する候補の数
 let g:neocomplcache_max_list = 20
+
+
+" powerline
+let g:Powerline_symbols = 'fancy'
+
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
