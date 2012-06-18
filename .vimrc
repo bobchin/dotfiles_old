@@ -14,150 +14,153 @@ set nocompatible
 " http://vim-users.jp/2011/04/hack215/
 "
 " Github から取得する場合
-" Bundle 'user_name/repository_name'
+" NeoBundle 'user_name/repository_name'
 "
 " vim-scriptsから取得する場合
 " スクリプト名一覧 http://vim-scripts.org/vim/scripts.html
-" Bundle 'script_name'
+" NeoBundle 'script_name'
 "
 " 上記以外のgitリポジトリから取得する場合
-" Bundle 'git://repository_url'
+" NeoBundle 'git://repository_url'
 " ---------------------------------------------------------------------
 filetype off
 if has('vim_starting')
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+  " set rtp+=~/.vim/bundle/vundle/
+  " call vundle#rc()
+  set rtp+=~/.vim/bundle/neobundle.vim/
+  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 " }}}
 
 let mapleader=' '
 
 " gcc/<C-_><C-_> でコメントアウト vim bible 6-3
-Bundle 'tomtom/tcomment_vim'
+NeoBundle 'tomtom/tcomment_vim'
 
 " <Leader>ig でインデントガイドのトグル vim bible 4-14
-Bundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " <C-y>, で展開する vim bible 9-7
-Bundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/zencoding-vim'
 
 " <Leader>tsp で空白整形 or <Leader>t{separator} でセパレータで整形 vim bible 5-11
-Bundle 'Align'
+NeoBundle 'Align'
 
 " マルチバイト対応の整形
-Bundle 'h1mesuke/vim-alignta'
+NeoBundle 'h1mesuke/vim-alignta'
 
 " ヤンクの履歴を保存し後から使用できるようにする vim bible 4-4
-Bundle "YankRing.vim"
+NeoBundle "YankRing.vim"
 
 " テキストオブジェクトを囲んだりする vim bible 5-14
 " ys{motion}{surround}            : surround で囲む
 " s{surround}                     : 選択範囲をsurroundで囲む
 " ds{surround}                    : surround を削除する
 " cs{old-surround}{new-surround}  : surround を変更する
-Bundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-surround'
 
 " テキストオブジェクト vim bible 5-15
 " テキストオブジェクトを簡単に作成するためのコアモジュール
-Bundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-user'
 " [z] フォールディングをテキストオブジェクトにする
-Bundle 'kana/vim-textobj-fold'
+NeoBundle 'kana/vim-textobj-fold'
 " [i] インデントをテキストオブジェクトにする
-Bundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-indent'
 " [/][?] 最後の検索にマッチした箇所をテキストオブジェクトにする
-Bundle 'kana/vim-textobj-lastpat'
+NeoBundle 'kana/vim-textobj-lastpat'
 " [y] syntax highlight されたものをテキストオブジェクトにする
-Bundle 'kana/vim-textobj-syntax'
+NeoBundle 'kana/vim-textobj-syntax'
 " いろんなものをテキストオブジェクトにする
-Bundle 'thinca/vim-textobj-plugins'
+NeoBundle 'thinca/vim-textobj-plugins'
 " 関数の中身をテキストオブジェクトにする
-Bundle 'kana/vim-textobj-function'
+NeoBundle 'kana/vim-textobj-function'
 
 " . で surround.vim の作業を繰り返す vim bible 5-16
-Bundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-repeat'
 
 " = で設定された入力をループする vim bible 9-4
-" Bundle 'smartchr'
+" NeoBundle 'smartchr'
 
 " true <=> false などをトグル。Insertモードでは<C-t>, それ以外では +
 " <C-t> でトグル用にしている。
-Bundle 'taku-o/vim-toggle'
+NeoBundle 'taku-o/vim-toggle'
 
 " 自動補完 vim bible 9-10
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
 
 " ステータスラインをきれいに表示
-Bundle 'Lokaltog/vim-powerline'
+NeoBundle 'Lokaltog/vim-powerline'
 
 " Markdownでメモ
-Bundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-markdown'
 
 " gx でカーソルの文字をブラウザで検索
-Bundle 'tyru/open-browser.vim'
+NeoBundle 'tyru/open-browser.vim'
 
 " w での単語移動をスマートにする
-Bundle 'kana/vim-smartword'
+NeoBundle 'kana/vim-smartword'
 
-"  ,w でキャメルケースやアンダーバー区切りで単語移動
-Bundle 'camelcasemotion'
+" ,w でキャメルケースやアンダーバー区切りで単語移動
+NeoBundle 'camelcasemotion'
 
 " <Leader><Leader>w/f で検索先をハイライトして移動 vim bible 4-9
-Bundle 'Lokaltog/vim-easymotion'
+NeoBundle 'Lokaltog/vim-easymotion'
 
 " % コマンドによる移動を拡張 vim bible 4-10
-Bundle 'matchit.zip'
+NeoBundle 'matchit.zip'
 
 " <Leader>r で編集中のファイルを簡単に実行できる vim bible 6-10
-Bundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-quickrun'
 
 " <S-k>でカーソル上のキーワードを参照する vim bible 6-5
-Bundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-ref'
 
 " jsref
-Bundle 'mojako/ref-sources.vim'
-Bundle 'tokuhirom/jsref'
+NeoBundle 'mojako/ref-sources.vim'
+NeoBundle 'tokuhirom/jsref'
 
 " trinity
-Bundle 'taglist.vim'
-Bundle 'Source-Explorer-srcexpl.vim'
-Bundle 'trinity.vim'
+NeoBundle 'taglist.vim'
+NeoBundle 'Source-Explorer-srcexpl.vim'
+NeoBundle 'trinity.vim'
 
 " syntax
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'jQuery'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'jQuery'
 
 " buffer 操作
-Bundle 'tyru/DumbBuf.vim'
+NeoBundle 'tyru/DumbBuf.vim'
 
 " 文字コードの自動認識
-Bundle 'banyan/recognize_charcode.vim'
-
-" Bundle 'scrooloose/syntastic'
+NeoBundle 'banyan/recognize_charcode.vim'
 
 " vim でシェル vim bible 6-11
-Bundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimshell'
 " vim から非同期実行
-Bundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc'
 " vim のファイラー vim bible 2-2
-Bundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimfiler'
 
 " Unite vim bible 10-1
-Bundle 'Shougo/unite.vim'
-Bundle 'tsukkee/unite-help'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'tsukkee/unite-tag'
-Bundle 'thinca/vim-unite-history'
-Bundle 'oppara/vim-unite-cake'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tsukkee/unite-help'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'thinca/vim-unite-history'
+" NeoBundle 'oppara/vim-unite-cake'
 
 " vimdoc-ja
-Bundle 'vim-jp/vimdoc-ja'
+NeoBundle 'vim-jp/vimdoc-ja'
 
-Bundle 'motemen/hatena-vim'
+" CakePHP
+NeoBundle 'violetyk/cake.vim'
 
-Bundle 'altercation/vim-colors-solarized'
+" colorscheme
+NeoBundle 'altercation/vim-colors-solarized'
 
-Bundle 'gmarik/vundle'
+" NeoBundle
+NeoBundle 'Shougo/neobundle.vim'
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 " }}}
@@ -387,20 +390,17 @@ function! s:unite_my_settings()
 endfunction
 
 
-" hatena.vim
-let g:hatena_user='bobchin'
+" CakePHP
+let g:cakephp_enable_fix_mode = 1
+let g:cakephp_enable_auto_mode = 1
 
-" php-doc
-" inoremap <C-r> <ESC>:call PhpDocSingle()<CR>i
-" nnoremap <C-r> :call PhpDocSingle()<CR>
-" vnoremap <C-r> :call PhpDocRange()<CR>
-" let g:pdv_cfg_Type = "string"
-" let g:pdv_cfg_Package = ""
-" let g:pdv_cfg_Version = "$id$"
-" let g:pdv_cfg_Author = "bobchin <bobchin.ryu@gmail.com>"
-" let g:pdv_cfg_Copyright = "Copyright(C) 2011 Hokkai Video Inc.All Rights Reserved."
-" let g:pdv_cfg_License = "PHP Version 5.2 {@link http://www.php.net/license/}"
-" }}}
+nnoremap <Leader>cc :Ccontroller<Space>
+nnoremap <Leader>cm :Cmodel<Space>
+nnoremap <Leader>cv :CView<Space>
+nnoremap <Leader>cs :Cshell<Space>
+nnoremap <Leader>ct :Ctask<Space>
+nnoremap <Leader>ccf :Cconfig<Space>
+nnoremap <Leader>ccp :Ccomponent<Space>
 
 
 " ---------------------------------------------------------------------
@@ -428,22 +428,6 @@ command! Sjis Cp932
 
 
 " ---------------------------------------------------------------------
-" 文字コード判定コマンドの定義（全角文字が化けたら :Fenc を実行）
-" ---------------------------------------------------------------------
-" command! Fenc call s:Fenc()
-" function! s:Fenc()
-"     if &modified
-"         echo "Err: No write since last change"
-"     else
-"         set fencs=iso-2022-jp,utf-8,cp932,ucs-2le,ucs-2
-"         exec "se fencs-=".&enc
-"         e!
-"         set fencs=
-"     endif
-" endfunction
-
-
-" ---------------------------------------------------------------------
 " インデント
 " ---------------------------------------------------------------------
 set autoindent                  " 自動でインデント
@@ -459,31 +443,20 @@ if has("autocmd")
   filetype indent on
 
   autocmd FileType apache     setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType aspvbs     setlocal sw=4 sts=4 ts=4 et
   autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType cs         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType diff       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType eruby      setlocal sw=4 sts=4 ts=4 et
   autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
   autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
   autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
   autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
   autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType haml       setlocal sw=2 sts=2 ts=2 et
   autocmd FileType sh         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType sql        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType vb         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType wsh        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4 et
   autocmd FileType xml        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
 endif
 
 
@@ -528,15 +501,11 @@ set showmatch                   " カッコの入力で対応するカッコを�
 set splitbelow                  " split で新規ウィンドウは下側に
 set splitright                  " vsplit で新規ウィンドウは右側に
 set title                       " ウィンドウタイトルを書き換える
+set number                      " 行番号を表示する
 " set/oldmethod=marker
 
 " カーソル行を強調表示
 set cursorline
-" augroup highlightCursolLine
-"     autocmd!
-"     autocmd Colorscheme * highlight clear CursorLine
-"     autocmd Colorscheme * highlight CursorLine ctermbg=darkgray guibg=black
-" augroup END
 
 " 全角スペースの表示
 scriptencoding utf-8
@@ -560,6 +529,7 @@ set ttymouse=xterm2
 " let g:solarized_contrast = "high"
 colorscheme solarized
 
+
 " ---------------------------------------------------------------------
 " 補完
 " ---------------------------------------------------------------------
@@ -569,22 +539,7 @@ set wildmode=list:longest,full  " 補完動作（リスト表示で最長一致�
 set history=1000                " コマンドの履歴数
 
 " <c-space> で omni 補完
-inoremap <C-Space> <C-x><C-o>
-
-" function! InsertTabWrapper()    " tab で omni 補完
-    " if pumvisible()
-        " return "\<c-n>"
-    " endif
-    " let col = col('.') - 1
-    " if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-        " return "\<tab>"
-    " elseif exists('&omnifunc') && &omnifunc == ''
-        " return "\<c-n>"
-    " else
-        " return "\<c-x>\<c-o>"
-    " endif
-" endfunction
-" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+" inoremap <C-Space> <C-x><C-o>
 
 
 " ---------------------------------------------------------------------
