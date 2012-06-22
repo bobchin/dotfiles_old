@@ -391,12 +391,13 @@ endfunction
 
 
 " CakePHP
-let g:cakephp_enable_fix_mode = 1
+" let g:cakephp_enable_fix_mode = 1
+" let g:cakephp_app = ""
 let g:cakephp_enable_auto_mode = 1
 
 nnoremap <Leader>cc :Ccontroller<Space>
 nnoremap <Leader>cm :Cmodel<Space>
-nnoremap <Leader>cv :CView<Space>
+nnoremap <Leader>cv :Cview<Space>
 nnoremap <Leader>cs :Cshell<Space>
 nnoremap <Leader>ct :Ctask<Space>
 nnoremap <Leader>ccf :Cconfig<Space>
