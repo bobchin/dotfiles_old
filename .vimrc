@@ -8,10 +8,12 @@
 " vi との互換性をもたない
 set nocompatible
 
-" vundle {{{
-" vundle 起動設定 {{{
+" NeoBundle {{{
+" NeoBundle 起動設定 {{{
 " ---------------------------------------------------------------------
-" http://vim-users.jp/2011/04/hack215/
+" インストール
+"  $ mkdir -p ~/.vim/bundle
+"  $ git clone https://github.com/Shougo/neobundle.vim neobundle.vim
 "
 " Github から取得する場合
 " NeoBundle 'user_name/repository_name'
@@ -25,8 +27,6 @@ set nocompatible
 " ---------------------------------------------------------------------
 filetype off
 if has('vim_starting')
-  " set rtp+=~/.vim/bundle/vundle/
-  " call vundle#rc()
   set rtp+=~/.vim/bundle/neobundle.vim/
   call neobundle#rc(expand('~/.vim/bundle/'))
 endif
@@ -34,11 +34,163 @@ endif
 
 let mapleader=' '
 
-" gcc/<C-_><C-_> でコメントアウト vim bible 6-3
-NeoBundle 'tomtom/tcomment_vim'
+" プラグイン管理 {{{
+NeoBundle 'Shougo/neobundle.vim'
 
+" }}}
+
+" ドキュメント管理 {{{
+" vimdoc-ja
+NeoBundle 'vim-jp/vimdoc-ja'
+
+" <S-k>でカーソル上のキーワードを参照する vim bible 6-5
+NeoBundle 'thinca/vim-ref'
+
+" jQuery のリファレンス
+NeoBundle 'mojako/ref-sources.vim'
+"javascript のリファレンス
+NeoBundle 'tokuhirom/jsref'
+
+" }}}
+
+" 入力補完 {{{
+" 自動補完 vim bible 9-10
+NeoBundle 'Shougo/neocomplcache'
+
+" スニペット入力
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
+
+" javascript の補完
+NeoBundle "teramako/jscomplete-vim"
+" }}}
+
+" ctags {{{
+NeoBundle 'taglist.vim'
+
+" }}}
+
+" Git {{{
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'extradite.vim'
+" }}}
+
+" text-object {{{
+" テキストオブジェクト vim bible 5-15
+" テキストオブジェクトを簡単に作成するためのコアモジュール
+NeoBundle 'kana/vim-textobj-user'
+
+" [i] インデントをテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-indent'
+
+" [y] syntax highlight されたものをテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-syntax'
+
+" [l] １行をテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-line'
+
+" [z] フォールディングをテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-fold'
+
+" [e] テキスト全体をテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-entire'
+
+" [d] 日付をテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-datetime'
+
+" [j] カッコをテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-jabraces'
+
+" [/][?] 最後の検索にマッチした箇所をテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-lastpat'
+
+" [f] 任意の文字で囲まれた範囲をテキストオブジェクトにする
+NeoBundle 'thinca/vim-textobj-between'
+
+" [c] コメントをテキストオブジェクトにする
+NeoBundle 'thinca/vim-textobj-comment'
+
+" [,]+w/b/e/ge スネークケースやキャメルケースをテキストオブジェクトにする
+NeoBundle 'h1mesuke/textobj-wiw'
+
+" [g] $/@/& などで始まる文字列（変数でよく使われれる）をテキストオブジェクトにする
+NeoBundle 'vimtaku/vim-textobj-sigil'
+
+" いろんなものをテキストオブジェクトにする
+NeoBundle 'thinca/vim-textobj-plugins'
+
+" [f] 関数の中身をテキストオブジェクトにする
+NeoBundle 'kana/vim-textobj-function'
+
+" }}}
+
+" operator {{{
+" }}}
+
+" unite {{{
+" Unite vim bible 10-1
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tsukkee/unite-help'
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'thinca/vim-unite-history'
+NeoBundle 'pasela/unite-webcolorname'
+" NeoBundle 'oppara/vim-unite-cake'
+
+" vim のファイラー vim bible 2-2
+NeoBundle 'Shougo/vimfiler'
+
+" vim でシェル vim bible 6-11
+NeoBundle 'Shougo/vimshell'
+
+" vim から非同期実行
+NeoBundle 'Shougo/vimproc'
+
+" }}}
+
+" quickfix {{{
+" }}}
+
+" looks {{{
 " <Leader>ig でインデントガイドのトグル vim bible 4-14
 NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" ステータスラインをきれいに表示
+NeoBundle 'Lokaltog/vim-powerline'
+
+" colorscheme
+NeoBundle 'altercation/vim-colors-solarized'
+
+" }}}
+
+" move cursor {{{
+" <Leader><Leader>w/f で検索先をハイライトして移動 vim bible 4-9
+NeoBundle 'Lokaltog/vim-easymotion'
+
+" % コマンドによる移動を拡張 vim bible 4-10
+NeoBundle 'matchit.zip'
+
+" w での単語移動をスマートにする
+NeoBundle 'kana/vim-smartword'
+
+" ,w でキャメルケースやアンダーバー区切りで単語移動
+NeoBundle 'camelcasemotion'
+
+" }}}
+
+" edit {{{
+" テキストオブジェクトを囲んだりする vim bible 5-14
+" ys{motion}{surround}            : surround で囲む
+" s{surround}                     : 選択範囲をsurroundで囲む
+" ds{surround}                    : surround を削除する
+" cs{old-surround}{new-surround}  : surround を変更する
+NeoBundle 'tpope/vim-surround'
+
+" . で surround.vim の作業を繰り返す vim bible 5-16
+NeoBundle 'tpope/vim-repeat'
+
+" gcc/<C-_><C-_> でコメントアウト vim bible 6-3
+NeoBundle 'tomtom/tcomment_vim'
 
 " <C-y>, で展開する vim bible 9-7
 NeoBundle 'mattn/zencoding-vim'
@@ -49,118 +201,57 @@ NeoBundle 'Align'
 " マルチバイト対応の整形
 NeoBundle 'h1mesuke/vim-alignta'
 
-" ヤンクの履歴を保存し後から使用できるようにする vim bible 4-4
-NeoBundle "YankRing.vim"
-
-" テキストオブジェクトを囲んだりする vim bible 5-14
-" ys{motion}{surround}            : surround で囲む
-" s{surround}                     : 選択範囲をsurroundで囲む
-" ds{surround}                    : surround を削除する
-" cs{old-surround}{new-surround}  : surround を変更する
-NeoBundle 'tpope/vim-surround'
-
-" テキストオブジェクト vim bible 5-15
-" テキストオブジェクトを簡単に作成するためのコアモジュール
-NeoBundle 'kana/vim-textobj-user'
-" [z] フォールディングをテキストオブジェクトにする
-NeoBundle 'kana/vim-textobj-fold'
-" [i] インデントをテキストオブジェクトにする
-NeoBundle 'kana/vim-textobj-indent'
-" [/][?] 最後の検索にマッチした箇所をテキストオブジェクトにする
-NeoBundle 'kana/vim-textobj-lastpat'
-" [y] syntax highlight されたものをテキストオブジェクトにする
-NeoBundle 'kana/vim-textobj-syntax'
-" いろんなものをテキストオブジェクトにする
-NeoBundle 'thinca/vim-textobj-plugins'
-" 関数の中身をテキストオブジェクトにする
-NeoBundle 'kana/vim-textobj-function'
-
-" . で surround.vim の作業を繰り返す vim bible 5-16
-NeoBundle 'tpope/vim-repeat'
-
-" = で設定された入力をループする vim bible 9-4
-" NeoBundle 'smartchr'
-
 " true <=> false などをトグル。Insertモードでは<C-t>, それ以外では +
 " <C-t> でトグル用にしている。
 NeoBundle 'taku-o/vim-toggle'
 
-" 自動補完 vim bible 9-10
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
-
-" ステータスラインをきれいに表示
-NeoBundle 'Lokaltog/vim-powerline'
-
 " Markdownでメモ
 NeoBundle 'tpope/vim-markdown'
+
+" }}}
+
+" other {{{
+" <Leader>r で編集中のファイルを簡単に実行できる vim bible 6-10
+NeoBundle 'thinca/vim-quickrun'
 
 " gx でカーソルの文字をブラウザで検索
 NeoBundle 'tyru/open-browser.vim'
 
-" w での単語移動をスマートにする
-NeoBundle 'kana/vim-smartword'
-
-" ,w でキャメルケースやアンダーバー区切りで単語移動
-NeoBundle 'camelcasemotion'
-
-" <Leader><Leader>w/f で検索先をハイライトして移動 vim bible 4-9
-NeoBundle 'Lokaltog/vim-easymotion'
-
-" % コマンドによる移動を拡張 vim bible 4-10
-NeoBundle 'matchit.zip'
-
-" <Leader>r で編集中のファイルを簡単に実行できる vim bible 6-10
-NeoBundle 'thinca/vim-quickrun'
-
-" <S-k>でカーソル上のキーワードを参照する vim bible 6-5
-NeoBundle 'thinca/vim-ref'
-
-" jsref
-NeoBundle 'mojako/ref-sources.vim'
-NeoBundle 'tokuhirom/jsref'
-
-" trinity
-NeoBundle 'taglist.vim'
-NeoBundle 'Source-Explorer-srcexpl.vim'
-NeoBundle 'trinity.vim'
-
-" syntax
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'jQuery'
-
-" buffer 操作
-NeoBundle 'tyru/DumbBuf.vim'
-
 " 文字コードの自動認識
 NeoBundle 'banyan/recognize_charcode.vim'
 
-" vim でシェル vim bible 6-11
-NeoBundle 'Shougo/vimshell'
-" vim から非同期実行
-NeoBundle 'Shougo/vimproc'
-" vim のファイラー vim bible 2-2
-NeoBundle 'Shougo/vimfiler'
+" }}}
 
-" Unite vim bible 10-1
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'thinca/vim-unite-history'
-" NeoBundle 'oppara/vim-unite-cake'
+" coding {{{
+" trinity
+NeoBundle 'Source-Explorer-srcexpl.vim'
+NeoBundle 'trinity.vim'
 
-" vimdoc-ja
-NeoBundle 'vim-jp/vimdoc-ja'
+" }}}
 
+" php {{{
 " CakePHP
 NeoBundle 'violetyk/cake.vim'
 
-" colorscheme
-NeoBundle 'altercation/vim-colors-solarized'
+" }}}
 
-" NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
+" javascript {{{
+" syntax
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'jQuery'
+
+" }}}
+
+" SQL {{{
+NeoBundle "dbext.vim"
+" }}}
+
+" ヤンクの履歴を保存し後から使用できるようにする vim bible 4-4
+NeoBundle "YankRing.vim"
+
+" buffer 操作
+NeoBundle 'tyru/DumbBuf.vim'
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 " }}}
@@ -168,57 +259,17 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 
 " plugin {{{ ----------------------------------------------------------
 
-" tcomment {{{
-" <C-_>b ブロックコメント
-" <C-_>i 囲むようにコメント
-" Space + / コメントをトグル
-nmap <Leader>/ <C-_><C-_>
-vmap <Leader>/ <C-_><C-_>
-" }}}
+" vim-ref
+" S-k でマニュアル検索
+let g:ref_phpmanual_path = $HOME . '/.vim/reference/php/'
+let g:ref_phpmanual_cmd = 'w3m -dump %s'
+let g:ref_alc_cmd='lynx -dump -nonumbers %s'
 
 
-" indent-guides {{{
-" let g:indent_guideson_vim_startup = 1
-let g:indent_guides_color_change_percent = 30
-let g:indent_guides_guide_size = 1
-" }}}
-
-
-" Zencoding
-" <C-y>,
-let g:user_zen_settings = {
-\   'indentation' : '    ',
-\   'javascript' : {
-\       'snippets' : {
-\           'jq' : "$function(){\n\t${cursor}${child}\n};",
-\           'jq:each' : "$.each(${cursor}, function(index, item){\n\t${child}\n});",
-\           'fn' : "(function(){\n\t${cursor}\n})();",
-\           'tm' : "setTimeout(function(){\n\t${cursor}\n}, 100);",
-\       },
-\   },
-\}
-
-
-" Align
-let g:Align_xstrlen = 3       " for japanese string
-let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
-
-
-" YankRing
-let g:yankring_history_dir = expand('$HOME')
-let g:yankring_history_file = '.yankring_history'
-let g:yankring_max_history = 10
-let g:yankring_window_height = 13
-
-
-" smartchr
-" inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
-
-
-" toggle
-imap <C-t> <Plug>ToggleI
-nmap <C-t> <Plug>ToggleN
-vmap <C-t> <Plug>ToggleV
+" jquery
+let g:ref_jquery_doc_path = $HOME . '/.vim/reference/jquery/'
+let g:ref_javascript_doc_path = $HOME . '/.vim/bundle/jsref/htdocs/'
+let g:ref_auto_resize = 1
 
 
 " neocomplcache {{{
@@ -306,60 +357,11 @@ endif
 let g:neocomplcache_same_filetype_lists['ctp'] = 'php'
 " }}}
 
-
-" powerline
-let g:Powerline_symbols = 'fancy'
-
-
-" open-browser
-let g:netrw_nogx = 1
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-
-
-" matchit
-let b:match_words = &matchpairs . ",\<if\>:\<endif\>,\<:\>"
-let b:match_ignorecase = 1
-
-
-" quickrun
-" <Leader>r で実行
-" 横分割するようにする
-let g:quickrun_config = {}
-let g:quickrun_config._ = {
-  \ 'split': 'below',
-  \ }
-let g:quickrun_config.markdown = {
-  \ 'outputter': 'browser',
-  \ }
-
-
-" vim-ref
-" S-k でマニュアル検索
-let g:ref_phpmanual_path = $HOME . '/.vim/reference/php/'
-let g:ref_phpmanual_cmd = 'w3m -dump %s'
-let g:ref_alc_cmd='lynx -dump -nonumbers %s'
-
-
-" jquery
-let g:ref_jquery_doc_path = $HOME . '/.vim/reference/jquery/'
-let g:ref_javascript_doc_path = $HOME . '/.vim/bundle/jsref/htdocs/'
-let g:ref_auto_resize = 1
-
+" snippets
+let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
 
 " taglist
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-
-
-"  DumbBuf
-let g:dumbbuf_hotkey = '<Leader>b'
-
-
-" vimfiler
-" vimfiler をデフォルトのファイラーにする
-let g:vimfiler_as_default_explorer = 1
-" セーフモードを無効化する
-" let g:vimfiler_safe_mode_by_default = 0
 
 
 " unite
@@ -390,6 +392,82 @@ function! s:unite_my_settings()
 endfunction
 
 
+" vimfiler
+" vimfiler をデフォルトのファイラーにする
+let g:vimfiler_as_default_explorer = 1
+" セーフモードを無効化する
+" let g:vimfiler_safe_mode_by_default = 0
+
+
+" indent-guides {{{
+" let g:indent_guideson_vim_startup = 1
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+" }}}
+
+
+" powerline
+let g:Powerline_symbols = 'fancy'
+
+
+" matchit
+let b:match_words = &matchpairs . ",\<if\>:\<endif\>,\<:\>"
+let b:match_ignorecase = 1
+
+
+" tcomment {{{
+" <C-_>b ブロックコメント
+" <C-_>i 囲むようにコメント
+" Space + / コメントをトグル
+nmap <Leader>/ <C-_><C-_>
+vmap <Leader>/ <C-_><C-_>
+" }}}
+
+
+" Zencoding
+" <C-y>,
+let g:user_zen_settings = {
+\   'indentation' : '    ',
+\   'javascript' : {
+\       'snippets' : {
+\           'jq' : "$function(){\n\t${cursor}${child}\n};",
+\           'jq:each' : "$.each(${cursor}, function(index, item){\n\t${child}\n});",
+\           'fn' : "(function(){\n\t${cursor}\n})();",
+\           'tm' : "setTimeout(function(){\n\t${cursor}\n}, 100);",
+\       },
+\   },
+\}
+
+
+" Align
+let g:Align_xstrlen = 3       " for japanese string
+let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
+
+
+" toggle
+imap <C-t> <Plug>ToggleI
+nmap <C-t> <Plug>ToggleN
+vmap <C-t> <Plug>ToggleV
+
+
+" open-browser
+let g:netrw_nogx = 1
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+
+" quickrun
+" <Leader>r で実行
+" 横分割するようにする
+let g:quickrun_config = {}
+let g:quickrun_config._ = {
+  \ 'split': 'below',
+  \ }
+let g:quickrun_config.markdown = {
+  \ 'outputter': 'browser',
+  \ }
+
+
 " CakePHP
 " let g:cakephp_enable_fix_mode = 1
 " let g:cakephp_app = ""
@@ -403,6 +481,23 @@ nnoremap <Leader>ct :Ctask<Space>
 nnoremap <Leader>ccf :Cconfig<Space>
 nnoremap <Leader>ccp :Ccomponent<Space>
 
+" YankRing
+let g:yankring_history_dir = expand('$HOME')
+let g:yankring_history_file = '.yankring_history'
+let g:yankring_max_history = 10
+let g:yankring_window_height = 13
+
+
+"  DumbBuf
+let g:dumbbuf_hotkey = '<Leader>b'
+
+
+" ---------------------------------------------------------------------
+" HTML
+" ---------------------------------------------------------------------
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
 
 " ---------------------------------------------------------------------
 " 文字コード
