@@ -1,0 +1,263 @@
+# --------------------------------------------------
+# Controller
+# --------------------------------------------------
+snippet controller
+    <?php
+    class ${1}Controller extends ${3:AppController} {
+        public $name = '${2}';
+        public $uses = ${4:false};
+        // public $helpers = array();
+        // public $components = array();
+        // public $layout = 'default';
+
+        public function index()
+        {
+        }
+        ${0}
+    }
+
+snippet set
+    $this->set('${1:name}', '${2:value}');${0}
+
+snippet setcomapct
+    $this->set(compact('${1}'));${0}
+
+snippet redirect
+    $this->redirect(array('controller' => '${1:controller}', 'action' => '${2:action}'));${0}
+
+snippet request
+    $this->request->data('${1:key}');${0}
+
+snippet query
+    $this->request->query['${1:key}'];${0}
+
+# --------------------------------------------------
+# Model
+# --------------------------------------------------
+snippet model
+    <?php
+    class ${1:singular_name} extends ${2:AppModel} {
+        public $name = '${3:singular_name}';
+        public $useTable = '${4:table}';
+        public $primaryKey = '${5:id}';
+        // public $validate = array();
+
+        ${0}
+    }
+
+snippet find
+    $this->${1:model_name}->find('${2:all/first/count/list/threaded/neighbours}', array(
+        'conditions' => array(
+            '${3:where_column}' => '${4:where_condition}',
+        ),
+        // 'fields' => array(),
+        // 'limit' => 20,
+        // 'order' => array('Model.col' => 'desc/asc'),
+    ));
+    ${0}
+
+snippet validate
+    '${1:field}' => array(
+        'rule' => '${2:rule}',
+        'message' => '${3:error_msg}',
+        // 'required' => true,
+        // 'allowEmpty' => true,
+        // 'last' => false,
+        // 'on' => 'update',
+    ),
+    ${0}
+
+snippet save
+    $this->${1:model_name}->save(${2:array_data}${0});
+
+# --------------------------------------------------
+# Html Helper
+# --------------------------------------------------
+snippet doctype
+    <?php echo $this->Html->doctype('${1:html5|html4-strict|html4-trans|html4-frame|xhtml-strict|xhtml-trans|xhtml-frame|xhtml11}'); ?>${0}
+
+snippet meta
+    <?php echo $this->html->meta('${1:keywords/descreption}', '${2:content}'); ?>${0}
+
+snippet charset
+    <?php echo $this->Html->charset(${1:'utf-8'}); ?>${0}
+
+snippet css
+    <?php echo $this->Html->css('${1:css_file}'); ?>${0}
+
+snippet script
+    <?php echo $this->Html->script('${1:js_file}'); ?>${0}
+
+snippet scriptStart
+    <?php echo $this->Html->scriptStart(array('inline' => ${1:false}, 'safe' => ${2:true})); ?>
+    jQuery(function($){
+        ${0}
+    });
+    <?php echo $this->Html->scriptEnd(); ?>
+
+snippet link
+    <?php echo $this->Html->link('${1:title}', array('controller' => '${2:controller}', 'action' => '${3:action}'), array('escape' => ${4:true})); ?>${0}
+
+snippet link_confirm
+    <?php echo $this->Html->link('${1:title}', array('controller' => '${2:controller}', 'action' => '${3:action}'), array('escape' => ${4:true}), ${5:comfirm_msg}); ?>${0}
+
+snippet link_url
+    <?php echo $this->Html->link('${1:title}', '${2:url}', array('escape' => ${3:true}))); ?>${0}
+
+snippet link_image
+    <?php echo $this->Html->link($this->Html->image('${1:path from /img}', array('alt' => '${2}'), array('controller' => '${3:controller}', 'action' => '${4:action}'), array('escape' => ${5:false})); ?>${0}
+
+snippet image
+    <?php echo $this->Html->image('${1:path from /img}', array('alt' => '${2}'${3:, 'width' => 20}${3:, 'height' => 20})); ?>${0}
+
+# --------------------------------------------------
+# Form Helper
+# --------------------------------------------------
+snippet form_create
+    <?php echo $this->Form->create(${1:'model_name'}); ?>${0}
+
+snippet form_create_detail
+    <?php echo $this->Form->create(${1:'model_name'}, array('url' => array('controller' => '${2:controller}', 'action' => '${3:action}'))); ?>${0}
+
+snippet form_create_file
+    <?php echo $this->Form->create(${1:'model_name'}, array('type' => 'file', 'url' => array('controller' => '${2:controller}', 'action' => '${3:action}'))); ?>${0}
+
+snippet form
+    <?php echo $this->Form->${0}; ?>${0}
+
+snippet form_text
+    <?php echo $this->Form->text('${1:field}', array('size' => ${2:size}, 'default' => '${3}')); ?>${0}
+
+snippet form_password
+    <?php echo $this->Form->password('${1:field}', array('size' => ${2:size}, 'default' => '${3}')); ?>${0}
+
+snippet form_textarea
+    <?php echo $this->Form->textarea('${1:field}', array('rows' => ${2:rows}, 'cols' => '${3:cols}')); ?>${0}
+
+snippet form_hidden
+    <?php echo $this->Form->hidden('${1:field}', array('value' => ${2:value})); ?>${0}
+
+snippet form_checkbox
+    <?php echo $this->Form->checkbox('${1:field}', array('hiddenField' => ${2:true}, 'default' => '${3}')); ?>${0}
+
+snippet form_radio
+    <?php echo $this->Form->radio('${1:field}', ${2:value-name pair}, array('legend' => ${3:false}, 'default' => '${4}'${5:, 'disabled' => true}${6:, 'separator' => '<br/>'})); ?>${0}
+
+snippet form_select
+    <?php echo $this->Form->select('${1:field}', ${2:value-name pair}, array('legend' => ${3:false}, 'default' => '${4}'${5:, 'disabled' => true}${6:, 'separator' => '<br/>'}${7:, 'multiple' => true})); ?>${0}
+
+snippet form_file
+    <?php echo $this->Form->file('${1:field}', array(${2:options})); ?>${0}
+
+snippet form_submit
+    <?php echo $this->Form->submit('${1:value|image}', array(${2:options})); ?>${0}
+
+snippet form_button
+    <?php echo $this->Form->button('${1:value|image}', array('type' => '${2:button|reset|submit}')); ?>${0}
+
+snippet form_post_button
+    <?php echo $this->Form->postButton('${1:value|image}', array('controller' => '${2:controller}', 'action' => '${3:action}')${4:, array()}); ?>${0}
+
+snippet form_post_link
+    <?php echo $this->Form->postLink('${1:value|image}', array('controller' => '${2:controller}', 'action' => '${3:action}')${4:, array()}); ?>${0}
+
+snippet form_error
+    <?php echo $this->Form->error('${1:field}', ${2:msg|false}, array('escape' => ${3:true}, 'wrap' => ${4:false}));?>${0}
+
+snippet form_isFieldError
+    <?php if ($this->Form->isFieldError('${1:field}'): ?>
+    <?php echo $this->Form->error('${2:field}', ${3:msg|false}, array('escape' => ${4:true}, 'wrap' => ${5:false}));?>${0}
+    <?php endif;?>
+
+# --------------------------------------------------
+# Pagination
+# --------------------------------------------------
+snippet sort
+    <?php echo $this->Paginator->sort('${1:field}', '${2:title}'); ?> ${0}
+
+snippet numbers
+    <?php echo $this->Paginator->numbers(array(
+        'first' => '<<',
+        'last' => '>>',
+        'class' => '',
+        'currentClass'=> 'current',
+        'tag' => 'span',
+        'separator' => '&nbsp;|&nbsp;',
+        'elipsis' => '...',
+    )); ?>${0}
+
+snippet counter
+    <?php echo $this->Paginator->counter('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'); ?>${0}
+
+# --------------------------------------------------
+# Session
+# --------------------------------------------------
+snippet setFlash
+    $this->Session->setFlash('${1:msg}');${0}
+
+# --------------------------------------------------
+# App
+# --------------------------------------------------
+snippet uses
+    App::uses('${1:class}', '${2:package}');${0}
+
+snippet uses_controller
+    App::uses('${1:controller_class}', 'Controller');${0}
+
+snippet uses_component
+    App::uses('${1:component_class}', 'Controller/Component');${0}
+
+snippet uses_model
+    App::uses('${1:model_class}', 'Model');${0}
+
+snippet uses_behavior
+    App::uses('${1:behavior_class}', 'Model/Behavior');${0}
+
+snippet uses_view
+    App::uses('${1:view_class}', 'View');${0}
+
+snippet uses_helper
+    App::uses('${1:helper_class}', 'View/Helper');${0}
+
+snippet uses_lib
+    App::uses('${1:library_class}', 'Library');${0}
+
+snippet uses_utility
+    App::uses('${1:utility_class}', 'Utiliry');${0}
+
+# --------------------------------------------------
+# Configure
+# --------------------------------------------------
+snippet read
+    Configure::read('${1:key}');${0}
+
+snippet write
+    Configure::write('${1:key}', '${2:value}');${0}
+
+# --------------------------------------------------
+# Misc
+# --------------------------------------------------
+snippet echo
+    <?php echo ${1:msg}; ?>${0}
+
+snippet hecho
+    <?php echo h(${1:msg}); ?>${0}
+
+snippet pr
+    <?php pr(${1:msg}); ?>${0}
+
+snippet log
+    <?php CakeLog::write('${1:debug|info|notice|warning|error|critical|alert|emergency}', ${2:msg}); ?>${0}
+
+snippet log_simple
+    <?php LogError(${1:msg}); ?>${0}
+
+snippet debug
+    debug(${1:var});${0}
+
+snippet var_dump
+    var_dump(${1:var});${0}
+
+
+
+
