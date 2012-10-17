@@ -211,7 +211,9 @@ bashcompinit
 source ~/git-completion.bash
 
 # rbenv
-eval "$(rbenv init -)"
+if [ -f rbenv ]; then
+    eval "$(rbenv init -)"
+fi
 
 # rake 
 _rake () {
