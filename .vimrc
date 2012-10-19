@@ -417,6 +417,7 @@ let g:Powerline_symbols = 'fancy'
 " let g:Powerline_mode_s = '選択';
 " let g:Powerline_mode_S = '行選択';
 " let g:Powerline_mode_cs = '矩形選択';
+set laststatus=2
 
 
 " matchit
