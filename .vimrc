@@ -208,6 +208,10 @@ NeoBundle 'taku-o/vim-toggle'
 " Markdownでメモ
 NeoBundle 'tpope/vim-markdown'
 
+" 翻訳
+NeoBundle 'mattn/excitetranslate-vim'
+NeoBundle 'mattn/webapi-vim'
+
 " }}}
 
 " other {{{
