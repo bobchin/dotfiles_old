@@ -435,6 +435,17 @@ let b:match_ignorecase = 1
 " Space + / コメントをトグル
 nmap <Leader>/ <C-_><C-_>
 vmap <Leader>/ <C-_><C-_>
+
+if !exists( 'g:tcomment_types' )
+  let g:tcomment_types = {}
+endif
+let g:tcomment_types = {
+  \'php_surround' : "<?php %s ?>",
+  \'php_surround_echo' : "<?php echo %s ?>"
+\}
+au FileType php imap <buffer><C-_>c :TCommentAs php_surround<CR>
+au FileType php imap <buffer><C-_>= :TCommentAs php_surround_echo<CR>
+au FileType php imap <buffer><C-_>e :TCommentAs php_surround_echo<CR>
 " }}}
 
 
@@ -740,10 +751,10 @@ inoremap <expr> ,df strftime('%Y-%m-%d %T')
 inoremap <expr> ,dd strftime('%Y-%m-%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
 
-" 最後に選択した範囲を選択する
-nnoremap gc `[v`]
-vnoremap gc :<C-u>normal gc<Enter>
-onoremap gc :<C-u>normal gc<Enter>
+" " 最後に選択した範囲を選択する
+" nnoremap gc `[v`]
+" vnoremap gc :<C-u>normal gc<Enter>
+" onoremap gc :<C-u>normal gc<Enter>
 
 " カレントウィンドウのみカーソル行をハイライトする
 augroup highlightOnlyCurrentWindow
