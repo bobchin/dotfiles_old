@@ -498,13 +498,17 @@ let g:quickrun_config.markdown = {
 " let g:cakephp_app = ""
 let g:cakephp_enable_auto_mode = 1
 
+nnoremap <Leader>ca :Cakephp<Space>./<CR>
 nnoremap <Leader>cc :Ccontroller<Space>
 nnoremap <Leader>cm :Cmodel<Space>
 nnoremap <Leader>cv :Cview<Space>
 nnoremap <Leader>cs :Cshell<Space>
 nnoremap <Leader>ct :Ctask<Space>
 nnoremap <Leader>ccf :Cconfig<Space>
+nnoremap <Leader>cf :Cconfig<Space>
 nnoremap <Leader>ccp :Ccomponent<Space>
+nnoremap <Leader>cp :Ccomponent<Space>
+nnoremap <Leader>cl :Clog<Space>
 
 " YankRing
 let g:yankring_history_dir = expand('$HOME')
