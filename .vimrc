@@ -266,8 +266,11 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 " vim-ref
 " S-k でマニュアル検索
 let g:ref_phpmanual_path = $HOME . '/.vim/reference/php/'
-let g:ref_phpmanual_cmd = 'w3m -dump %s'
-let g:ref_alc_cmd='lynx -dump -nonumbers %s'
+" ヘルプをqで閉じる
+augroup CloseHelpWithQPHPManual
+    autocmd!
+    autocmd FileType ref-phpmanual nnoremap <buffer>q :<C-u>q<CR>
+augroup END
 
 
 " jquery
