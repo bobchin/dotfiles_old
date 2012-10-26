@@ -130,11 +130,11 @@ NeoBundle 'kana/vim-textobj-function'
 " unite {{{
 " Unite vim bible 10-1
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'h1mesuke/unite-outline'
+" NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tsukkee/unite-help'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'thinca/vim-unite-history'
-NeoBundle 'pasela/unite-webcolorname'
+" NeoBundle 'tsukkee/unite-tag'
+" NeoBundle 'thinca/vim-unite-history'
+" NeoBundle 'pasela/unite-webcolorname'
 " NeoBundle 'oppara/vim-unite-cake'
 
 " vim のファイラー vim bible 2-2
