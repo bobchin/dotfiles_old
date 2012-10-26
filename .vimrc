@@ -266,10 +266,26 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 " vim-ref
 " S-k でマニュアル検索
 let g:ref_phpmanual_path = $HOME . '/.vim/reference/php/'
+" webdict
+let g:ref_source_webdict_sites = {
+\   'eijiro': {
+\     'url': 'http://eow.alc.co.jp/search?q=%s',
+\   },
+\ }
+let g:ref_source_webdict_sites.default = 'eijiro'
+" 出力に対するフィルタ
+function! g:ref_source_webdict_sites.eijiro.filter(output)
+  return join(split(a:output, "\n")[35 :], "\n")
+endfunction
+
+" カーソル下のキーワードをヘルプでひく
+nnoremap <C-i>k :<C-u>Ref webdict <C-r><C-w><Enter>
+
 " ヘルプをqで閉じる
-augroup CloseHelpWithQPHPManual
+augroup CloseHelpWithQRef
     autocmd!
     autocmd FileType ref-phpmanual nnoremap <buffer>q :<C-u>q<CR>
+    autocmd FileType ref-webdict nnoremap <buffer>q :<C-u>q<CR>
 augroup END
 
 
