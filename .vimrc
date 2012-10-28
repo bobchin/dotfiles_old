@@ -430,7 +430,7 @@ let g:indent_guides_guide_size = 1
 
 
 " powerline
-let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'compatible'
 " let g:Powerline_mode_i = '挿入';
 " let g:Powerline_mode_R = '置換';
 " let g:Powerline_mode_n = '通常';
