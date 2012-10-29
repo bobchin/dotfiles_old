@@ -330,8 +330,8 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " key-mappings.
 " スニペットを展開する
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
 " UNDO
 inoremap <expr><C-g> neocomplcache#undo_completion()
 " 補完候補の共通部分までを補完する
@@ -373,7 +373,10 @@ endif
 let g:neocomplcache_same_filetype_lists['ctp'] = 'php'
 
 " snippets
-let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
+let g:neosnippet#snippets_directory = $HOME.'/.vim/snippets'
+" if has('conceal')
+"   set conceallevel=2 concealcursor=i
+" endif
 " }}}
 
 
