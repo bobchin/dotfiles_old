@@ -317,14 +317,11 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " 表示する候補の数
 let g:neocomplcache_max_list = 20
 
-" Define dictionary.
+" 辞書補完の辞書を指定。filetype:辞書ファイル名
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'javascript' : $HOME.'/.vim/dict/jacascript.dict',
     \ 'php' : $HOME.'/.vim/dict/php.dict',
-    \ 'ctp' : $HOME.'/.vim/dict/php.dict',
-    \ 'vm' : $HOME.'/.vim/dict/vim.dict',
     \ }
 
 " Define keyword.
@@ -333,7 +330,7 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
+" key-mappings.
 " スニペットを展開する
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
@@ -342,10 +339,6 @@ inoremap <expr><C-g> neocomplcache#undo_completion()
 " 補完候補の共通部分までを補完する
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 
-" SuperTab like snippets behavior.
-" imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" key-mappings.
 " 補完を確定して閉じる
 inoremap <expr><C-y> neocomplcache#close_popup()
 " 補完をキャンセルして閉じる
@@ -353,10 +346,14 @@ inoremap <expr><C-c> neocomplcache#cancel_popup()
 " <CR> 候補が出ていれば確定にする
 inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 " <TAB> で補完
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<UP>" : "\<S-TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<BS>"
+
+" ファイル名補完をneocomplcacheで置き換える
+inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
 
 " FileType毎のOmni補完を設定
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -364,24 +361,23 @@ autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType c          setlocal omnifunc=ccomplete#Complete
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 
 "ファイルタイプの関連付け
 if !exists('g:neocomplcache_same_filetype_lists')
   let g:neocomplcache_same_filetype_lists = {}
 endif
 let g:neocomplcache_same_filetype_lists['ctp'] = 'php'
-" }}}
 
 " snippets
 let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
+" }}}
+
 
 " taglist
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
