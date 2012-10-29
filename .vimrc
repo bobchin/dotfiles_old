@@ -58,7 +58,7 @@ NeoBundle 'tokuhirom/jsref'
 NeoBundle 'Shougo/neocomplcache'
 
 " スニペット入力
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neosnippet'
 
 " javascript の補完
 NeoBundle "teramako/jscomplete-vim"
