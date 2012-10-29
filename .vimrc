@@ -312,8 +312,6 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 " neocomplcache を自動的にロックするバッファ名のパターン
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" 一番先頭の候補を選択状態にする
-" let g:neocomplcache_enable_auto_select = 1
 " 表示する候補の数
 let g:neocomplcache_max_list = 20
 
@@ -356,11 +354,11 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<BS>"
 inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
 
 " FileType毎のOmni補完を設定
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php           setlocal omnifunc=phpcomplete#CompletePHP
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
