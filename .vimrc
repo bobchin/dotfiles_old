@@ -392,7 +392,7 @@ nmap f [unite]
 " バッファ一覧
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 " ファイル一覧
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " 常用セット
 nnoremap <silent> [unite]u :<C-u>Unite buffer file_mru<CR>
 " 全部のせ
@@ -410,13 +410,17 @@ function! s:unite_my_settings()
     nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
     inoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
 endfunction
+" }}}
 
 
-" vimfiler
+" vimfiler {{{
 " vimfiler をデフォルトのファイラーにする
 let g:vimfiler_as_default_explorer = 1
 " セーフモードを無効化する
-" let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_safe_mode_by_default = 0
+nnoremap <silent> ff :<C-u>VimFilerBufferDir -quit<CR>
+nnoremap <silent> fi :<C-u>:VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -no-quit<CR>
+" }}}
 
 
 " indent-guides {{{
