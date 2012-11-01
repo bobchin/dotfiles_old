@@ -358,13 +358,13 @@ autocmd FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php           setlocal omnifunc=phpcomplete#CompletePHP
+" autocmd FileType php           setlocal omnifunc=phpcomplete#CompletePHP
 
-" Enable heavy omni completion.
+" オムニ補完
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::'
 
 "ファイルタイプの関連付け
 if !exists('g:neocomplcache_same_filetype_lists')
