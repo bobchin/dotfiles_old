@@ -263,9 +263,10 @@ filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張
 
 " plugin {{{ ----------------------------------------------------------
 
-" vim-ref
+" vim-ref {{{
 " S-k でマニュアル検索
 let g:ref_phpmanual_path = $HOME . '/.vim/reference/php/'
+
 " webdict
 let g:ref_source_webdict_sites = {
 \   'eijiro': {
@@ -287,6 +288,7 @@ augroup CloseHelpWithQRef
     autocmd FileType ref-phpmanual nnoremap <buffer>q :<C-u>q<CR>
     autocmd FileType ref-webdict nnoremap <buffer>q :<C-u>q<CR>
 augroup END
+" }}}
 
 
 " jquery
