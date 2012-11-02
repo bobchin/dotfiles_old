@@ -47,9 +47,9 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'thinca/vim-ref'
 
 " jQuery のリファレンス
-NeoBundle 'mojako/ref-sources.vim'
+" NeoBundle 'mojako/ref-sources.vim'
 "javascript のリファレンス
-NeoBundle 'tokuhirom/jsref'
+" NeoBundle 'tokuhirom/jsref'
 
 " }}}
 
@@ -61,7 +61,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 
 " javascript の補完
-NeoBundle "teramako/jscomplete-vim"
+" NeoBundle 'teramako/jscomplete-vim'
 " }}}
 
 " ctags {{{
@@ -69,11 +69,47 @@ NeoBundle 'taglist.vim'
 
 " }}}
 
+
+" unite {{{
+" Unite vim bible 10-1
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tsukkee/unite-help'
+" NeoBundle 'tsukkee/unite-tag'
+" NeoBundle 'thinca/vim-unite-history'
+" NeoBundle 'pasela/unite-webcolorname'
+
+" vim のファイラー vim bible 2-2
+NeoBundle 'Shougo/vimfiler'
+
+" vim でシェル vim bible 6-11
+NeoBundle 'Shougo/vimshell'
+
+" vim から非同期実行
+NeoBundle 'Shougo/vimproc'
+
+" }}}
+
+
+" looks {{{
+" <Leader>ig でインデントガイドのトグル vim bible 4-14
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" ステータスラインをきれいに表示
+NeoBundle 'Lokaltog/vim-powerline'
+
+" colorscheme
+NeoBundle 'altercation/vim-colors-solarized'
+
+" }}}
+
+
 " Git {{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'extradite.vim'
 " }}}
+
 
 " text-object {{{
 " テキストオブジェクト vim bible 5-15
@@ -124,44 +160,6 @@ NeoBundle 'kana/vim-textobj-function'
 
 " }}}
 
-" operator {{{
-" }}}
-
-" unite {{{
-" Unite vim bible 10-1
-NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'tsukkee/unite-help'
-" NeoBundle 'tsukkee/unite-tag'
-" NeoBundle 'thinca/vim-unite-history'
-" NeoBundle 'pasela/unite-webcolorname'
-" NeoBundle 'oppara/vim-unite-cake'
-
-" vim のファイラー vim bible 2-2
-NeoBundle 'Shougo/vimfiler'
-
-" vim でシェル vim bible 6-11
-NeoBundle 'Shougo/vimshell'
-
-" vim から非同期実行
-NeoBundle 'Shougo/vimproc'
-
-" }}}
-
-" quickfix {{{
-" }}}
-
-" looks {{{
-" <Leader>ig でインデントガイドのトグル vim bible 4-14
-NeoBundle 'nathanaelkane/vim-indent-guides'
-
-" ステータスラインをきれいに表示
-NeoBundle 'Lokaltog/vim-powerline'
-
-" colorscheme
-NeoBundle 'altercation/vim-colors-solarized'
-
-" }}}
 
 " move cursor {{{
 " <Leader><Leader>w/f で検索先をハイライトして移動 vim bible 4-9
@@ -177,6 +175,7 @@ NeoBundle 'kana/vim-smartword'
 NeoBundle 'camelcasemotion'
 
 " }}}
+
 
 " edit {{{
 " テキストオブジェクトを囲んだりする vim bible 5-14
@@ -209,10 +208,10 @@ NeoBundle 'taku-o/vim-toggle'
 NeoBundle 'tpope/vim-markdown'
 
 " 翻訳
-NeoBundle 'mattn/excitetranslate-vim'
 NeoBundle 'mattn/webapi-vim'
 
 " }}}
+
 
 " other {{{
 " <Leader>r で編集中のファイルを簡単に実行できる vim bible 6-10
@@ -226,6 +225,7 @@ NeoBundle 'banyan/recognize_charcode.vim'
 
 " }}}
 
+
 " coding {{{
 " trinity
 NeoBundle 'Source-Explorer-srcexpl.vim'
@@ -233,11 +233,13 @@ NeoBundle 'trinity.vim'
 
 " }}}
 
+
 " php {{{
 " CakePHP
 NeoBundle 'violetyk/cake.vim'
 
 " }}}
+
 
 " javascript {{{
 " syntax
@@ -247,15 +249,14 @@ NeoBundle 'jQuery'
 
 " }}}
 
+
 " SQL {{{
 NeoBundle "dbext.vim"
 " }}}
 
+
 " ヤンクの履歴を保存し後から使用できるようにする vim bible 4-4
 NeoBundle "YankRing.vim"
-
-" buffer 操作
-NeoBundle 'tyru/DumbBuf.vim'
 
 filetype plugin indent on       " ファイル別 plugin (~/.vim/ftplugin/拡張子.vim)
 " }}}
@@ -441,15 +442,15 @@ let g:indent_guides_guide_size = 1
 
 " powerline
 let g:Powerline_symbols = 'compatible'
-" let g:Powerline_mode_i = '挿入';
-" let g:Powerline_mode_R = '置換';
-" let g:Powerline_mode_n = '通常';
-" let g:Powerline_mode_v = 'ビジュアル';
-" let g:Powerline_mode_V = '行ビジュアル';
-" let g:Powerline_mode_cv = '矩形ビジュアル';
-" let g:Powerline_mode_s = '選択';
-" let g:Powerline_mode_S = '行選択';
-" let g:Powerline_mode_cs = '矩形選択';
+let g:Powerline_mode_i = '挿入'
+let g:Powerline_mode_R = '置換'
+let g:Powerline_mode_n = '通常'
+let g:Powerline_mode_v = 'ビジュアル'
+let g:Powerline_mode_V = '行ビジュアル'
+let g:Powerline_mode_cv = '矩形ビジュアル'
+let g:Powerline_mode_s = '選択'
+let g:Powerline_mode_S = '行選択'
+let g:Powerline_mode_cs = '矩形選択'
 set laststatus=2
 
 
@@ -544,10 +545,6 @@ let g:yankring_history_dir = expand('$HOME')
 let g:yankring_history_file = '.yankring_history'
 let g:yankring_max_history = 10
 let g:yankring_window_height = 13
-
-
-"  DumbBuf
-let g:dumbbuf_hotkey = '<Leader>b'
 
 
 " ---------------------------------------------------------------------
