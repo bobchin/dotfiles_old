@@ -795,12 +795,4 @@ augroup highlightOnlyCurrentWindow
 augroup END
 
 
-" ---------------------------------------------------------------------
-" Vim テクニックバイブル
-" ---------------------------------------------------------------------
-" PHP 文法チェック
-augroup phpSyntaxCheck
-    autocmd!
-    autocmd BufWrite *.php w !php -l
-augroup END
 
