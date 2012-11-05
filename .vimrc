@@ -272,11 +272,17 @@ let g:ref_source_webdict_sites = {
 \   'eijiro': {
 \     'url': 'http://eow.alc.co.jp/search?q=%s',
 \   },
+\   'longman': {
+\     'url': 'http://www.ldoceonline.com/dictionary/%s_1',
+\   },
 \ }
 let g:ref_source_webdict_sites.default = 'eijiro'
 " 出力に対するフィルタ
 function! g:ref_source_webdict_sites.eijiro.filter(output)
   return join(split(a:output, "\n")[35 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.longman.filter(output)
+  return join(split(a:output, "\n")[17 :], "\n")
 endfunction
 
 " カーソル下のキーワードをヘルプでひく
