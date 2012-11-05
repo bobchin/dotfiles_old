@@ -104,14 +104,16 @@ NeoBundle 'altercation/vim-colors-solarized'
 " }}}
 
 
-" Git {{{
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'extradite.vim'
-" }}}
-
-
 " text-object {{{
+" テキストオブジェクトを囲んだりする vim bible 5-14
+" ys{motion}{surround}            : surround で囲む
+" ds{surround}                    : surround を削除する
+" cs{old-surround}{new-surround}  : surround を変更する
+NeoBundle 'tpope/vim-surround'
+
+" . で surround.vim の作業を繰り返す vim bible 5-16
+NeoBundle 'tpope/vim-repeat'
+
 " テキストオブジェクト vim bible 5-15
 " テキストオブジェクトを簡単に作成するためのコアモジュール
 NeoBundle 'kana/vim-textobj-user'
@@ -178,16 +180,6 @@ NeoBundle 'camelcasemotion'
 
 
 " edit {{{
-" テキストオブジェクトを囲んだりする vim bible 5-14
-" ys{motion}{surround}            : surround で囲む
-" s{surround}                     : 選択範囲をsurroundで囲む
-" ds{surround}                    : surround を削除する
-" cs{old-surround}{new-surround}  : surround を変更する
-NeoBundle 'tpope/vim-surround'
-
-" . で surround.vim の作業を繰り返す vim bible 5-16
-NeoBundle 'tpope/vim-repeat'
-
 " gcc/<C-_><C-_> でコメントアウト vim bible 6-3
 NeoBundle 'tomtom/tcomment_vim'
 
@@ -210,6 +202,13 @@ NeoBundle 'tpope/vim-markdown'
 " 翻訳
 NeoBundle 'mattn/webapi-vim'
 
+" }}}
+
+
+" Git {{{
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'extradite.vim'
 " }}}
 
 
@@ -792,6 +791,22 @@ augroup highlightOnlyCurrentWindow
     autocmd WinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
 augroup END
+
+" カーソルキーを使用しないようにする
+" nnoremap <Left>           :call DrillInstructor('left',  0)<CR>
+" nnoremap <Right>          :call DrillInstructor('right', 0)<CR>
+" nnoremap <Up>             :call DrillInstructor('up',    0)<CR>
+" nnoremap <Down>           :call DrillInstructor('down',  0)<CR>
+" inoremap <Left>     <ESC> :call DrillInstructor('left',  1)<CR>
+" inoremap <Right>    <ESC> :call DrillInstructor('right', 1)<CR>
+" inoremap <Up>       <ESC> :call DrillInstructor('up',    1)<CR>
+" inoremap <Down>     <ESC> :call DrillInstructor('down',  1)<CR>
+"
+" function! DrillInstructor(key, insert)
+"   let s:extra_msg = (a:insert) == 1 ? '[ESC] to ' : ''
+"   echo printf("Don't use %s-key!!! Press %s[h]", a:key, s:extra_msg)
+" endfunction
+"
 
 
 
