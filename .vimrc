@@ -86,7 +86,13 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 
 " vim から非同期実行
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', { 
+\ 'build' : {
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'unix' : 'make -f make_unix.mak',
+\   },
+\ }
 
 " }}}
 
