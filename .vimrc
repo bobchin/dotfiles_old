@@ -352,6 +352,7 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 " スニペットを展開する
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 " UNDO
 inoremap <expr><C-g> neocomplcache#undo_completion()
 " 補完候補の共通部分までを補完する
