@@ -255,6 +255,12 @@ NeoBundle 'jQuery'
 " }}}
 
 
+" html {{{
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'AtsushiM/sass-compile.vim'
+" }}}
+
 " SQL {{{
 NeoBundle "dbext.vim"
 " }}}
@@ -819,6 +825,12 @@ augroup END
 "   echo printf("Don't use %s-key!!! Press %s[h]", a:key, s:extra_msg)
 " endfunction
 "
+
+
+
+
+
+
 
 
 
