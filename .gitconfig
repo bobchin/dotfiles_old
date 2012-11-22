@@ -1,0 +1,30 @@
+[user]
+	name = bobchin
+	email = bobchin.ryu@gmail.com
+[core]
+	autocrlf = input
+	safecrlf = true
+	excludesfile = /Users/kazunobu/.gitignore_global
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+    hist = log --pretty=color --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+[color "status"]
+	ui = auto
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[color]
+	ui = auto
+[push]
+	default = upstream
+[pretty]
+    color = format:%C(magenta)%ad%C(reset) %C(cyan)%h%C(reset) %C(green)[%an]%C(reset) %C(normal)%s%C(reset) %C(red)%d%C(reset)
+
