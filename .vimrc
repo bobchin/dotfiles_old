@@ -256,9 +256,9 @@ NeoBundle 'jQuery'
 
 
 " html {{{
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'AtsushiM/sass-compile.vim'
+" NeoBundle 'hail2u/vim-css3-syntax'
+" NeoBundle 'othree/html5.vim'
+" NeoBundle 'AtsushiM/sass-compile.vim'
 " }}}
 
 " SQL {{{
@@ -827,7 +827,13 @@ augroup END
 " endfunction
 "
 
-
+" vim 起動時は tmux のステータスを隠す
+if !has('gui_running') && $TMUX !=# ''
+    augroup Tmux
+        autocmd!
+        autocmd VimEnter,VimLeave * silent !tmux set status
+    augroup END
+endif
 
 
 

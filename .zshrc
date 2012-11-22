@@ -223,9 +223,6 @@ _rake () {
 }
 compdef _rake rake
 
-# node
-NODE_PATH=/usr/local/lib/node_modules
-
 
 ##############エイリアスの設定###############
 #OSによる切り替えを行う
