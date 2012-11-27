@@ -492,6 +492,12 @@ snippet uses_lib
 snippet uses_utility
 	App::uses('${1:#:utility_class}', 'Utiliry');${0}
 
+snippet build_plugins
+	App::build(array('Plugin' => array(${1:ROOT . DS . 'plugins' . DS})));${0}
+
+snippet build_vendors
+	App::build(array('Vendor' => array(${1:ROOT . DS . 'vendors' . DS})));${0}
+
 # --------------------------------------------------
 # Configure
 # --------------------------------------------------
