@@ -751,8 +751,8 @@ inoremap <C-w> <Esc>:<C-u>w<Enter>a
 inoremap jj <ESC>
 
 " insert mode 時 Enter で途中改行
-inoremap <Enter> <Esc>o
-inoremap <C-j> <Esc>o
+" inoremap <Enter> <Esc>o
+" inoremap <C-j> <Esc>o
 
 " ビジュアルモード時に連続でインデントする
 vnoremap > >gv
