@@ -692,10 +692,14 @@ set t_Co=256
 set ttymouse=xterm2
 
 " カラーテーマ
-" 輝度を高くする
-" let g:solarized_visibility = "high"
-" コントラストを高くする
-" let g:solarized_contrast = "high"
+let g:solarized_termcolors=16
+let g:solarized_termtrans=0
+let g:solarized_degrade=0
+let g:solarized_bold=1
+let g:solarized_underline=1
+let g:solarized_italic=1
+let g:solarized_contrast='normal'
+let g:solarized_visibility='normal'
 colorscheme solarized
 
 
