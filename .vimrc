@@ -413,7 +413,7 @@ let g:neosnippet#snippets_directory = $HOME.'/.vim/snippets'
 " taglist {{{
 if (executable('/usr/bin/ctags'))
   let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-elseif (executable('/usr/local/bin/ctags')
+elseif (executable('/usr/local/bin/ctags'))
   let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 endif
 
