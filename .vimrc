@@ -51,6 +51,11 @@ NeoBundle 'thinca/vim-ref'
 "javascript のリファレンス
 " NeoBundle 'tokuhirom/jsref'
 
+" Excite翻訳
+NeoBundle 'mattn/excitetranslate-vim', {
+  \ 'depends': 'mattn/webapi-vim'
+  \ }
+
 " }}}
 
 " 入力補完 {{{
@@ -228,6 +233,8 @@ NeoBundle 'tyru/open-browser.vim'
 " 文字コードの自動認識
 NeoBundle 'banyan/recognize_charcode.vim'
 
+" 正規表現で検索 :M/ | :S | :G
+NeoBundle 'othree/eregex.vim'
 " }}}
 
 
@@ -262,7 +269,7 @@ NeoBundle 'jQuery'
 " }}}
 
 " SQL {{{
-NeoBundle "dbext.vim"
+" NeoBundle 'dbext.vim'
 " }}}
 
 
