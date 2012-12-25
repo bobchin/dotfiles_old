@@ -198,7 +198,7 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'mattn/zencoding-vim'
 
 " <Leader>tsp で空白整形 or <Leader>t{separator} でセパレータで整形 vim bible 5-11
-NeoBundle 'Align'
+" NeoBundle 'Align'
 
 " マルチバイト対応の整形
 NeoBundle 'h1mesuke/vim-alignta'
@@ -213,6 +213,8 @@ NeoBundle 'tpope/vim-markdown'
 " 翻訳
 NeoBundle 'mattn/webapi-vim'
 
+" 初回起動テンプレート
+NeoBundle 'vim-scripts/qtmplsel.vim'
 " }}}
 
 
@@ -430,6 +432,8 @@ nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 " nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " 常用セット
 nnoremap <silent> [unite]u :<C-u>Unite buffer file_mru<CR>
+" 整形
+nnoremap <silent> [unite]l :<C-u>Unite alignta<CR>
 " 全部のせ
 nnoremap <silent> [unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " help
@@ -520,8 +524,8 @@ let g:user_zen_settings = {
 
 
 " Align
-let g:Align_xstrlen = 3       " for japanese string
-let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
+" let g:Align_xstrlen = 3       " for japanese string
+" let g:DrChipTopLvlMenu = ''   " remove 'DrChip' menu
 
 
 " toggle
@@ -535,11 +539,13 @@ let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
+" qtmplsel
+" let g:qts_templatedir = $HOME.'/.vim/template'
 
 " quickrun
 " <Leader>r で実行
 " 横分割するようにする
-let g:quickrun_config = {}
+let g:quickrun_config   = {}
 let g:quickrun_config._ = {
   \ 'split': 'below',
   \ }
