@@ -28,12 +28,8 @@ bindkey -M afu "^M" afu+cancel-and-accept-line
 
 # z ###########################################################
 package-install github rupa/z
-source $(package-directory rupa/z)/z.sh
-
 _Z_CMD=j
-precmd() {
-    _z --add "$(pwd -P)"
-}
+source $(package-directory rupa/z)/z.sh
 
 
 
