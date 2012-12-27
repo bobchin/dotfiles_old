@@ -1,4 +1,5 @@
 source ~/zsh/antigen/antigen.zsh
+ADOTDIR=$HOME/zsh/package
 
 # preconfig
 # for z
