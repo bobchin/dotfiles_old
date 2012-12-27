@@ -206,23 +206,23 @@ setopt no_flow_control
 # PROMPT ="%/# " （赤文字）:通常のプロンプト
 # PROMPT2="%_# " （赤文字）:２行目以降のプロンプト
 # SPROMPT="%r is correst? [n,y,a,e]: ":コマンドを打ち間違えたときの「もしかして」プロンプト
-autoload -U colors
-colors
-
-# color
-DEFAULT=$'%{\e[1;0m%}'
-RESET="%{${reset_color}%}"
-GREEN="%{${fg[green]}%}"
-BLUE="%{${fg[blue]}%}"
-RED="%{${fg[red]}%}"
-CYAN="%{${fg[cyan]}%}"
-WHITE="%{${fg[white]}%}"
-
-PROMPT="%B${RED}%/%#${RESET}%b "
-PROMPT2="%B${RED}%_%#${RESET}%b "
-SPROMPT="%B${RED}%r is correct? [n,y,a,e]:${RESET}%b "
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-    PROMPT="${CYAN}${(U)HOST%%.*} ${PROMPT}"
+# autoload -U colors
+# colors
+# 
+# # color
+# DEFAULT=$'%{\e[1;0m%}'
+# RESET="%{${reset_color}%}"
+# GREEN="%{${fg[green]}%}"
+# BLUE="%{${fg[blue]}%}"
+# RED="%{${fg[red]}%}"
+# CYAN="%{${fg[cyan]}%}"
+# WHITE="%{${fg[white]}%}"
+# 
+# PROMPT="%B${RED}%/%#${RESET}%b "
+# PROMPT2="%B${RED}%_%#${RESET}%b "
+# SPROMPT="%B${RED}%r is correct? [n,y,a,e]:${RESET}%b "
+# [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+#     PROMPT="${CYAN}${(U)HOST%%.*} ${PROMPT}"
 
 # 補完
 ## 初期化
@@ -456,9 +456,9 @@ cons25)
 esac
 
 # git completion
-autoload bashcompinit
-bashcompinit
-source ~/git-completion.bash
+# autoload bashcompinit
+# bashcompinit
+# source ~/git-completion.bash
 
 
 # OS固有設定

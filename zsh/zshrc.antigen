@@ -1,0 +1,44 @@
+source ~/zsh/antigen/antigen.zsh
+
+# preconfig
+# for z
+_Z_CMD=j
+
+# Load the oh-my-zsh's library.
+antigen-lib
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen-bundle rupa/z
+antigen-bundle hchbaw/auto-fu.zsh
+antigen-bundle cake
+antigen-bundle git
+antigen-bundle yum
+
+# Load the theme.
+# antigen-theme eastwood
+# antigen-theme dst
+# antigen-theme daveverwer
+antigen-theme dpoggi
+
+# Tell antigen that you're done.
+antigen-apply
+
+
+# config
+# for auto-fu
+
+# auto-fuを初期化する。
+zle-line-init() {
+    auto-fu-init
+}
+zle -N zle-line-init
+zle -N zle-keymap-select auto-fu-zle-keymap-select
+
+# auto-fuをカスタマイズする。
+# Enterを押したときは自動補完された部分を利用しない。
+afu+cancel-and-accept-line() {
+    ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
+    zle afu+accept-line
+}
+zle -N afu+cancel-and-accept-line
+bindkey -M afu "^M" afu+cancel-and-accept-line
