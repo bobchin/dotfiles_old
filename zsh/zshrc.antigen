@@ -9,11 +9,12 @@ _Z_CMD=j
 antigen-lib
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen-bundle rupa/z
-antigen-bundle hchbaw/auto-fu.zsh
-antigen-bundle cake
 antigen-bundle git
 antigen-bundle yum
+antigen-bundle rupa/z
+antigen-bundle hchbaw/auto-fu.zsh
+antigen-bundle zsh-users/zsh-completions
+antigen-bundle zsh-users/zsh-syntax-highlighting
 
 # Load the theme.
 # antigen-theme eastwood
@@ -27,7 +28,6 @@ antigen-apply
 
 # config
 # for auto-fu
-
 # auto-fuを初期化する。
 zle-line-init() {
     auto-fu-init
@@ -43,3 +43,11 @@ afu+cancel-and-accept-line() {
 }
 zle -N afu+cancel-and-accept-line
 bindkey -M afu "^M" afu+cancel-and-accept-line
+
+
+# for zsh-completions
+fpath=(~/zsh/package/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
+
+
+
+

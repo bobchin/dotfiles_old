@@ -213,8 +213,6 @@ NeoBundle 'tpope/vim-markdown'
 " 翻訳
 NeoBundle 'mattn/webapi-vim'
 
-" 初回起動テンプレート
-NeoBundle 'vim-scripts/qtmplsel.vim'
 " }}}
 
 
