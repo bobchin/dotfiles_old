@@ -28,25 +28,25 @@ antigen-apply
 
 # config
 # for auto-fu
-# auto-fuを初期化する。
-zle-line-init() {
-    auto-fu-init
-}
-zle -N zle-line-init
-zle -N zle-keymap-select auto-fu-zle-keymap-select
-
-# auto-fuをカスタマイズする。
-# Enterを押したときは自動補完された部分を利用しない。
-afu+cancel-and-accept-line() {
-    ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
-    zle afu+accept-line
-}
-zle -N afu+cancel-and-accept-line
-bindkey -M afu "^M" afu+cancel-and-accept-line
-
-
-# for zsh-completions
-fpath=(~/zsh/package/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
+# # auto-fuを初期化する。
+# zle-line-init() {
+#     auto-fu-init
+# }
+# zle -N zle-line-init
+# zle -N zle-keymap-select auto-fu-zle-keymap-select
+# 
+# # auto-fuをカスタマイズする。
+# # Enterを押したときは自動補完された部分を利用しない。
+# afu+cancel-and-accept-line() {
+#     ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
+#     zle afu+accept-line
+# }
+# zle -N afu+cancel-and-accept-line
+# bindkey -M afu "^M" afu+cancel-and-accept-line
+# 
+# 
+# # for zsh-completions
+# fpath=(~/zsh/package/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
 
 
 
