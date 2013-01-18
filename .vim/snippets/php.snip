@@ -294,7 +294,7 @@ snippet req_is
 # Model
 # --------------------------------------------------
 snippet model
-	class ${1:singular_name}Model extends AppModel
+	class ${1:singular_name} extends AppModel
 	{
 		public $name = '$1';
 		public $useTable = '${2:$1}';
