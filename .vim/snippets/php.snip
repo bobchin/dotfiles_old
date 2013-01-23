@@ -11,7 +11,6 @@ abbr function () {}
 snippet php
 	<?php
 	${1:TARGET}
-	?>
 
 snippet echoh
 	<?php echo htmlentities(${1:#:$var}, ENT_QUOTES, 'utf-8') ?>
@@ -127,7 +126,7 @@ snippet do
 	} while (${1:#:condition});
 
 snippet if?
-	${1:#:retVal} = (${2:#:condition}) ? ${3:#:a} : ${4:#:b};
+	${1:#:retVal} = (${2:#:condition}) ? ${3:#:a} : ${4:#:b};${0}
 
 snippet ifelse
 	if (${1:#:condition}) {
@@ -165,7 +164,7 @@ snippet fore
 		${0:TARGET}
 	}
 
-snippet con
+snippet construct
 	function __construct(${1})
 	{
 		${0:TARGET}
@@ -273,7 +272,7 @@ snippet controller
 	}
 
 snippet set
-	$this->set('${1:#:name}', '${2:#:value}');${0}
+	$this->set('${1:#:name}', ${2:#:value});${0}
 
 snippet setcomapct
 	$this->set(compact('${1:#:varname}'));${0}
@@ -285,10 +284,10 @@ snippet req_postdata
 	$this->request->data['${1:#:key}'];${0}
 
 snippet req_querystring
-	$this->request->query['${1:key}'];${0}
+	$this->request->query['${1:#:key}'];${0}
 
 snippet req_is
-	$this->request->is('${1:#:post}')${0}
+	$this->request->is('${1:post}')${0}
 
 # --------------------------------------------------
 # Model
@@ -326,6 +325,51 @@ snippet validate
 
 snippet save
 	$this->save(${2:array_data}${0});
+
+snippet hasOne
+	public $hasOne = array(
+		'${1:model_name}' => array(
+			'className' => '${2:$1}',
+			'foreignKey' => '${3:id}',
+			// 'conditions' => array(),
+			// 'fields' => array(),
+			// 'order' => array('field' => 'desc|asc'),
+			// 'dependent' => true,
+		),
+	);
+	${0}
+
+snippet belongsTo
+	public $belongsTo = array(
+		'${1:model_name}' => array(
+			'className' => '${2:$1}',
+			'foreignKey' => '${3:id}',
+			// 'conditions' => array(),
+			// 'type' => 'left|inner',
+			// 'fields' => array(),
+			// 'order' => array('field' => 'desc|asc'),
+			// 'counterCache' => array(),
+			// 'counterScope' => array(),
+		),
+	);
+	${0}
+
+snippet hasMany
+	public $hasMany = array(
+		'${1:model_name}' => array(
+			'className' => '${2:$1}',
+			'foreignKey' => '${3:id}',
+			// 'conditions' => array(),
+			// 'fields' => array(),
+			// 'order' => array('field' => 'desc|asc'),
+			// 'limit' => 20,
+			// 'offset' => 10,
+			// 'dependent' => true,
+			// 'exclusive' => true,
+			// 'finderQuery' => '',
+		),
+	);
+	${0}
 
 # --------------------------------------------------
 # Html Helper
