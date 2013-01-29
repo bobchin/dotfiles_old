@@ -13,7 +13,7 @@ snippet php
 	${1:TARGET}
 
 snippet echoh
-	<?php echo htmlentities(${1:#:$var}, ENT_QUOTES, 'utf-8') ?>
+	<?php echo h(${1:#:$var}); ?>
 
 snippet pfore
 	<?php foreach (${1:#:variable} as ${2:#:key}${3: =>}): ?>
@@ -278,7 +278,7 @@ snippet setcomapct
 	$this->set(compact('${1:#:varname}'));${0}
 
 snippet redirect
-	$this->redirect(array('controller' => '${1:#:controller}', 'action' => '${2:#:action}'));${0}
+	$this->redirect(array(${1:'controller' => '', }'action' => '${2:#:action}'));${0}
 
 snippet req_postdata
 	$this->request->data['${1:#:key}'];${0}
@@ -371,6 +371,27 @@ snippet hasMany
 	);
 	${0}
 
+snippet hasAndBelongsToMany
+	public $hasAndBelongsToMany = array(
+		'${1:model_name}' => array(
+			'className' => '${2:$1}',
+			'joinTable' => '${3:intermediate_tablename}',
+			'foreignKey' => '${4:self_id}',
+			'associationForeignKey' => '${5:assoc_id}',
+			// 'with' => '',
+			// 'unique' => true,
+			// 'conditions' => array(),
+			// 'fields' => array(),
+			// 'order' => array('field' => 'desc|asc'),
+			// 'limit' => 20,
+			// 'offset' => 10,
+			// 'finderQuery' => '',
+			// 'deleteQuery' => '',
+			// 'insertQuery' => '',
+		),
+	);
+	${0}
+
 # --------------------------------------------------
 # Html Helper
 # --------------------------------------------------
@@ -378,7 +399,7 @@ snippet doctype
 	<?php echo $this->Html->doctype('${1:#:html5|html4-strict|html4-trans|html4-frame|xhtml-strict|xhtml-trans|xhtml-frame|xhtml11}'); ?>${0}
 
 snippet meta
-	<?php echo $this->html->meta('${1:#:keywords|descreption}', '${2:#:content}'); ?>${0}
+	<?php echo $this->Html->meta('${1:#:keywords|descreption}', '${2:#:content}'); ?>${0}
 
 snippet charset
 	<?php echo $this->Html->charset(${1:'utf-8'}); ?>${0}
@@ -397,16 +418,16 @@ snippet scriptStart
 	<?php echo $this->Html->scriptEnd(); ?>
 
 snippet link
-	<?php echo $this->Html->link('${1:#:title}', array('controller' => '${2:#:controller}', 'action' => '${3:#:action}'); ?>${0}
+	<?php echo $this->Html->link('${1:#:title}', array(${2:'controller' => '', }'action' => '${3:#:action}')); ?>${0}
 
 snippet link_confirm
-	<?php echo $this->Html->link('${1:title}', array('controller' => '${2:controller}', 'action' => '${3:action}'), array('escape' => ${4:true}), ${5:comfirm_msg}); ?>${0}
+	<?php echo $this->Html->link('${1:title}', array(${2:'controller' => '', }'action' => '${3:action}'), array('escape' => ${4:true}), ${5:comfirm_msg}); ?>${0}
 
 snippet link_url
 	<?php echo $this->Html->link('${1:title}', '${2:url}', array('escape' => ${3:true}))); ?>${0}
 
 snippet link_image
-	<?php echo $this->Html->link($this->Html->image('${1:path from /img}', array('alt' => '${2}'), array('controller' => '${3:controller}', 'action' => '${4:action}'), array('escape' => false)); ?>${0}
+	<?php echo $this->Html->link($this->Html->image('${1:path from /img}', array('alt' => '${2}'), array(${3:'controller' => '', }'action' => '${4:action}'), array('escape' => false)); ?>${0}
 
 snippet image
 	<?php echo $this->Html->image('${1:path from /img}', array('alt' => '${2}'${3:, 'width' => 20}${4:, 'height' => 20})); ?>${0}
@@ -417,14 +438,20 @@ snippet image
 snippet form_create
 	<?php echo $this->Form->create(${1:'model_name'}); ?>${0}
 
+snippet form_end
+	<?php echo $this->Form->end(${1:'submit'}); ?>${0}
+
 snippet form_create_detail
-	<?php echo $this->Form->create(${1:'model_name'}, array('url' => array('controller' => '${2:controller}', 'action' => '${3:action}'))); ?>${0}
+	<?php echo $this->Form->create(${1:'model_name'}, array('url' => array(${2:'controller' => '', }'action' => '${3:action}'))); ?>${0}
 
 snippet form_create_file
-	<?php echo $this->Form->create(${1:'model_name'}, array('type' => 'file', 'url' => array('controller' => '${2:controller}', 'action' => '${3:action}'))); ?>${0}
+	<?php echo $this->Form->create(${1:'model_name'}, array('type' => 'file', 'url' => array(${2:'controller' => '', }'action' => '${3:action}'))); ?>${0}
 
 snippet form
-	<?php echo $this->Form->${0}; ?>${0}
+	<?php echo $this->Form->${1:type}('${2:field}'); ?>${0}
+
+snippet form_input
+	<?php echo $this->Form->input('${2:field}', array('type' => '${1:type}')); ?>${0}
 
 snippet form_text
 	<?php echo $this->Form->text('${1:field}', array('size' => ${2:size}, 'default' => '${3}')); ?>${0}
@@ -457,10 +484,10 @@ snippet form_button
 	<?php echo $this->Form->button('${1:value|image}', array('type' => '${2:button|reset|submit}')); ?>${0}
 
 snippet form_post_button
-	<?php echo $this->Form->postButton('${1:value|image}', array('controller' => '${2:controller}', 'action' => '${3:action}')${4:, array()}); ?>${0}
+	<?php echo $this->Form->postButton('${1:value|image}', array(${2:'controller' => '', }'action' => '${3:action}')${4:, array()}); ?>${0}
 
 snippet form_post_link
-	<?php echo $this->Form->postLink('${1:value|image}', array('controller' => '${2:controller}', 'action' => '${3:action}')${4:, array()}); ?>${0}
+	<?php echo $this->Form->postLink('${1:value|image}', array(${2:'controller' => '', }'action' => '${3:action}')${4:, array()}); ?>${0}
 
 snippet form_error
 	<?php echo $this->Form->error('${1:field}', ${2:msg|false}, array('escape' => ${3:true}, 'wrap' => ${4:false}));?>${0}
