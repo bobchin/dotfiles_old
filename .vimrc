@@ -553,9 +553,9 @@ let g:quickrun_config.markdown = {
 
 
 " CakePHP
-" let g:cakephp_enable_fix_mode = 1
-" let g:cakephp_app = ""
-let g:cakephp_enable_auto_mode = 1
+let g:cakephp_enable_fix_mode = 1
+let g:cakephp_app = ""
+" let g:cakephp_enable_auto_mode = 1
 
 nnoremap <Leader>ca :Cakephp<Space>./<CR>
 nnoremap <Leader>cc :Ccontroller<Space>
